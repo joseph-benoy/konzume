@@ -1,5 +1,5 @@
 <?php
-       require_once "../vendor/autoload.php";
+       //require_once "../vendor/autoload.php";
        use simplehtmldom\HtmlWeb;
        class Search{
               private $client = null;
@@ -19,10 +19,7 @@
                             $value = $element->href;
                             break;
                      }
-                     echo explode('/url?q=',explode('&sa',$value)[0])[1]."\n";
                      return explode('/url?q=',explode('&sa',$value)[0])[1];
               }
        }
-       $x = new Search("flipkart","iphone 12");
-       $x->getProduct();
 ?>
