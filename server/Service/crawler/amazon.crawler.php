@@ -16,11 +16,11 @@
                      $html = $this->client->load($this->productUrl);
                      $value = "";
                      echo $this->productUrl."\n";
-                     foreach($html->find('#imgTagWrapperId img') as $element){
-                            $value = $element->src;
-                            echo $value."\n\n";
-                     }
+                     $value = $html->find('#imgTagWrapperId img',0)->src;
+                     echo $value."\n";
+                     echo $html->find('#productTitle',0)->innertext."\n";
+                     var_dump($html->find('#priceblock_ourprice'));
               }
        }
        $x = new Amazon();
-       $x->getProductSummary("s20");
+       $x->getProductSummary("iphone 12");

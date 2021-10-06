@@ -14,11 +14,7 @@
                      $query = str_replace(' ',"%20",$this->product);
                      $query.="%20inurl:";
                      $html = $this->client->load('https://www.google.com/search?q='.$query.$this->baseWebsite);
-                     $value = '';
-                     foreach($html->find('a[href^=/url?]') as $element){
-                            $value = $element->href;
-                            break;
-                     }
+                     $value = $html->find('a[href^=/url?]',0)->href;
                      return explode('/url?q=',explode('&sa',$value)[0])[1];
               }
        }
