@@ -26,10 +26,8 @@
                      else{
                             $price = "Not available";
                      }
-                     print_r(array('productUrl'=>$this->productUrl,'imgUrl'=>$value,'productTitle'=>$html->find('#productTitle',0)->innertext,"price"=>$price));
                      return array('productUrl'=>$this->productUrl,'imgUrl'=>$value,'productTitle'=>$html->find('#productTitle',0)->innertext,"price"=>$price);
               }
        }
        $x = new Amazon();
        $x->getProductSummary("Vivo Y51A");       
-       //$x->getProductSummary("iphone 12");
