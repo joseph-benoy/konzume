@@ -1,33 +1,33 @@
 <?php
-       require_once "./BaseController.php";
+       require_once "BaseController.php";
        require_once "./Model/Product.php";
        class ProductController extends BaseController{
               /**
                * /product/search endpoint
                */
-              public function productsearch(){
+              public function searchproduct(){
                      $errorDesc = '';
                      $requestMethod = $_SERVER['REQUEST_METHOD'];
                      $queryParams = $this->getQueryParams();
                      if(strtoupper($requestMethod)=='GET'){
                             try{
                                    $productModel = new Product();
-                                   $data = json_encode($productModel->getProductSummary($queryParams['p']));
+                                   $data = json_encode($productModel->getProductSummary($queryParams['p']),JSON_UNESCAPED_SLASHES);
                             }
                             catch(Error $e){
                                    $errorDesc = "Product model error!";
-                                   $strErrorHeader = 'HTTP/1.1 500 Internal Server Error';
+                                   http_response_code(500);
                             }
                      }
                      else{
                             $strErrorDesc = 'Method not supported';
-                            $strErrorHeader = 'HTTP/1.1 422 Unprocessable Entity';
+                            http_response_code(422);
                      }
                      if(!$errorDesc){
-                            $this->sendOutput(array('Content-Type: application/json', 'HTTP/1.1 200 OK'),$data);
+                            $this->sendOutput(array('Content-Type: application/json'),$data);
                      }
                      else{
-                            $this->sendOutput(array($strErrorHeader),$strErrorDesc);
+                            $this->sendOutput(array(),$strErrorDesc);
                      }
               }
        }

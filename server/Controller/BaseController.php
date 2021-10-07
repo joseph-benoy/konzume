@@ -6,7 +6,7 @@
                * @param mixed $arguments
                */
               public function __call($name, $arguments){
-                     $this->sendOutput(array('HTTP/1.1 404 Not Found'));
+                     $this->sendOutput(array('HTTP/1.1 404 Not Found'),"No such endpoint called $name");
               }
               /**
                * method to send the output as http response
@@ -24,6 +24,8 @@
                      exit;
               }
               public function getQueryParams(){
-                     return parse_str($_SERVER['QUERY_STRING'],$query);
+                     $query=null;
+                     parse_str($_SERVER['QUERY_STRING'],$query);
+                     return $query;
               }
        }
