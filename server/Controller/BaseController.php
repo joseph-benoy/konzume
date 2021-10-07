@@ -23,4 +23,7 @@
                      echo $data;
                      exit;
               }
+              public function getQueryParams(){
+                     return parse_str($_SERVER['QUERY_STRING'],$query);
+              }
        }
