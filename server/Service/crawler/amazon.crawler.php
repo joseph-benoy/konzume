@@ -15,12 +15,21 @@
                      $this->productUrl = $search->getProduct();
                      $html = $this->client->load($this->productUrl);
                      $value = "";
-                     echo $this->productUrl."\n";
                      $value = $html->find('#imgTagWrapperId img',0)->src;
-                     echo $value."\n";
-                     echo $html->find('#productTitle',0)->innertext."\n";
-                     var_dump($html->find('#priceblock_ourprice'));
+                     $price = null;
+                     if($html->find('#priceblock_dealprice',0)!=NULL){
+                            $price = $html->find('#priceblock_dealprice',0)->innertext;
+                     }
+                     elseif($html->find('#priceblock_ourprice',0)!=NULL){
+                            $price = $html->find('#priceblock_ourprice',0)->innertext;
+                     }
+                     else{
+                            $price = "Not available";
+                     }
+                     print_r(array('productUrl'=>$this->productUrl,'imgUrl'=>$value,'productTitle'=>$html->find('#productTitle',0)->innertext,"price"=>$price));
+                     return array('productUrl'=>$this->productUrl,'imgUrl'=>$value,'productTitle'=>$html->find('#productTitle',0)->innertext,"price"=>$price);
               }
        }
        $x = new Amazon();
-       $x->getProductSummary("iphone 12");
+       $x->getProductSummary("Vivo Y51A");       
+       //$x->getProductSummary("iphone 12");
