@@ -1,5 +1,4 @@
 <?php
-       require_once "/media/joseph/Works/Web/Projects/konzume/server/vendor/autoload.php";
        require_once "search.php";
        use simplehtmldom\HtmlWeb;
        class Amazon{
