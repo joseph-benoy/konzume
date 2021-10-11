@@ -49,19 +49,17 @@
                      $aboutProduct = array();
                      $aboutListElement = $html->find("#feature-bullets ul",0);
                      $i=0;
-                     try{
-                            foreach($aboutListElement as $aboutElement){
-                                   if($html->find("#feature-bullets ul li span",$i)!=null){
-                                          array_push($aboutProduct,$html->find("#feature-bullets ul li span",$i)->innertext);
-                                   }
-                                   $i++;
+                     foreach($aboutListElement as $aboutElement){
+                            if($html->find("#feature-bullets ul li span",$i)!=null){
+                                   array_push($aboutProduct,$html->find("#feature-bullets ul li span",$i)->innertext);
                             }
-                            print_r($aboutProduct);
+                            $i++;
                      }
-                     catch(Throwable $e){
-                            echo $e->getMessage();
-                     }
+                     $productRating = explode(" ",$html->find("#reviewsMedley span",0)->innertext)[0];
+                     echo $productRating;
+                     //rating-out-of-text
+                     //reviewsMedley                     
               }
        }
       $x = new Amazon();
-      $x->getProductDetails("https://www.amazon.in/Vivo-Y21-Midnight-Additional-Exchange/dp/B08ZJTXYNF");
+      $x->getProductDetails("https://www.amazon.in/Samsung-Galaxy-Storage-Months-Replacement/dp/B096VD213D");
