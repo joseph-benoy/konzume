@@ -30,7 +30,7 @@
                             $this->sendOutput(array(),$strErrorDesc);
                      }
               }
-              public function productdetails(){
+              public function amazonproductdetails(){
                      $strErrorDesc = '';
                      $requestMethod = $_SERVER['REQUEST_METHOD'];
                      $queryParams = $this->getQueryParams();
