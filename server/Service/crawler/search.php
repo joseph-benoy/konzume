@@ -5,7 +5,7 @@
               private $client = null;
               private $baseWebsite = null;
               private $product = null;
-              public function __construct($base,$product){
+              public function __construct($base,$product=null){
                      $this->baseWebsite = $base;
                      $this->product = $product;
                      $this->client = new HtmlWeb();

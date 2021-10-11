@@ -3,7 +3,9 @@
               public function getProductSummary($productName){
                      return (new Amazon())->getProductSummary($productName);
               }
-              public function getProductDetail($productName,$website){
-                     return (new Amazon())->getProductDetails($productName,$website);
+              public function getProductDetail($productUrl,$website){
+                     if($website=="amazon"){
+                            return (new Amazon())->getProductDetails($productUrl);
+                     }
               }
        }
