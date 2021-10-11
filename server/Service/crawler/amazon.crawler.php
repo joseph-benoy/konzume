@@ -67,6 +67,15 @@
                             }
                             $i++;
                      }
+                     return array(
+                            "productUrl"=>$this->productUrl,
+                            "productTitle"=>$productTitle,
+                            "productImgUrl"=>$imgUrl,
+                            "productPrice"=>$price,
+                            "productAbout"=>$aboutProduct,
+                            "productRating"=>$productRating,
+                            "productReviews"=>$productReviews
+                     );
               }
        }
       $x = new Amazon();
