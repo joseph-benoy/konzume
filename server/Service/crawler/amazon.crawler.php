@@ -45,7 +45,6 @@
                             $price = "Not available";
                      }
                      $productTitle = $html->find('#productTitle',0)->innertext;
-                     //feature-bullets
                      $aboutProduct = array();
                      $aboutListElement = $html->find("#feature-bullets ul",0);
                      $i=0;
@@ -56,9 +55,18 @@
                             $i++;
                      }
                      $productRating = explode(" ",$html->find("#reviewsMedley span",0)->innertext)[0];
-                     echo $productRating;
-                     //rating-out-of-text
-                     //reviewsMedley                     
+                     $productReviews = array();
+                     $i=0;
+                     $reviewListElements = $html->find('div[data-hook=review-collapsed] span');
+                     foreach($reviewListElements as $reviewSpan){
+                            if($i==4){
+                                   break;
+                            }
+                            if($html->find('div[data-hook=review-collapsed] span',0)!=null){
+                                   array_push($productReviews,$html->find('div[data-hook=review-collapsed] span',$i)->innertext);
+                            }
+                            $i++;
+                     }
               }
        }
       $x = new Amazon();
