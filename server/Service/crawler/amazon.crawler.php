@@ -27,5 +27,8 @@
                      }
                      return array("productUrl"=>$this->productUrl,'imgUrl'=>$value,'productTitle'=>$html->find('#productTitle',0)->innertext,"price"=>$price);
               }
+              public function getProductDetails($productName){
+
+              }
        }
       

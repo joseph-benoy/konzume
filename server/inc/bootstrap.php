@@ -5,3 +5,4 @@
               require_once PROJECT_ROOT_PATH."./Service/scrapper.php";
               require_once PROJECT_ROOT_PATH."./Model/Product.php";
               require_once PROJECT_ROOT_PATH."./vendor/autoload.php";
+              require_once PROJECT_ROOT_PATH."./Service/crawler/amazon.crawler.php";
