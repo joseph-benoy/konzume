@@ -37,7 +37,7 @@
                      if(strtoupper($requestMethod)=='GET'){
                             try{
                                    $productModel = new Product();
-                                   $data = json_encode($productModel->getProductSummary($queryParams['p']),JSON_UNESCAPED_SLASHES);
+                                   $data = json_encode($productModel->getProductDetail($queryParams['purl'],"amazon"),JSON_UNESCAPED_SLASHES);
                             }
                             catch(Error $e){
                                    $errorDesc = "Product model error!";
@@ -48,7 +48,7 @@
                             $strErrorDesc = 'Method not supported';
                             http_response_code(422);
                      }
-                     if(!$errorDesc){
+                     if(!$strErrorDesc){
                             $this->sendOutput(array('Content-Type: application/json'),$data);
                      }
                      else{

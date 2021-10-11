@@ -78,5 +78,3 @@
                      );
               }
        }
-      $x = new Amazon();
-      $x->getProductDetails("https://www.amazon.in/Samsung-Galaxy-Storage-Months-Replacement/dp/B096VD213D");
