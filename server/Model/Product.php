@@ -8,4 +8,7 @@
                             return (new Amazon())->getProductDetails($productUrl);
                      }
               }
+              public function getTrusted($productUrl){
+                     return (new Amazon())->getTrusted($productUrl);
+              }
        }
