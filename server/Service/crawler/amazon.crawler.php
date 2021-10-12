@@ -79,11 +79,11 @@
               }
               public function getTrusted($productUrl){
                      $this->productUrl = $productUrl;
-                     $reviewMetaUrl = "https://reviewmeta.com/amazon-in/".explode("/",$productUrl)[5];
+                     $reviewMetaUrl = "https://reviewmeta.com/amazon-in/".explode("/",$productUrl)[4];
                      $html = $this->client->load($reviewMetaUrl);
                      $trustedReviewUrl = $html->find("div[class=show-actual-review] a",0)->href;
                      $html = $this->client->load($trustedReviewUrl);
                      $reviewText = $html->find("span[data-hook=review-body] span",0)->innertext;
-                     return $reviewText;
+                     return array("reviewText"=>$reviewText);
               }
        }
