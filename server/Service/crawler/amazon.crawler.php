@@ -1,6 +1,5 @@
 <?php
        require_once "search.php";
-       require_once "/media/joseph/Works/Web/Projects/konzume/server/vendor/autoload.php";
        use simplehtmldom\HtmlWeb;
        class Amazon{
               private $baseWebsite = "amazon";

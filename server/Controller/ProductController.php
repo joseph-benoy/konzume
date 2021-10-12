@@ -23,7 +23,7 @@
                             $strErrorDesc = 'Method not supported';
                             http_response_code(422);
                      }
-                     if(!$errorDesc){
+                     if(!$strErrorDesc){
                             $this->sendOutput(array('Content-Type: application/json'),$data);
                      }
                      else{
