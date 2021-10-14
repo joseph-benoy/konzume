@@ -11,4 +11,7 @@
               public function getTrusted($productUrl){
                      return (new Amazon())->getTrusted($productUrl);
               }
+              public function getFlipkart($productName){
+                     return (new Flipkart())->getProductDetails($productName);
+              }
        }
