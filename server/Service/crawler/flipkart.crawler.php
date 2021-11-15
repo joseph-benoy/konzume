@@ -23,7 +23,7 @@
                             $productRating = explode("<img",$html->find("span[class=_1lRcqv] div",0)->innertext)[0];
                      }
                      return array(
-                            "productUrl"=>$this->productUrl,
+                            "productUrl"=>explode("?",$this->productUrl)[0],
                             "productTitle"=>$productName,
                             "productRating"=>$productRating
                      );
