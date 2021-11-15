@@ -1,6 +1,9 @@
 <?php
        require_once "search.php";
+       require_once "/media/joseph/Works/Web/Projects/konzume/server/vendor/autoload.php";
+       use Nesk\Puphpeteer\Puppeteer;
        use simplehtmldom\HtmlWeb;
+       use Nesk\Rialto\Data\JsFunction;
        class Amazon{
               private $baseWebsite = "amazon";
               private $productUrl = null;
@@ -8,6 +11,20 @@
               public function __construct()
               {
                      $this->client = new HtmlWeb();
+              }
+              public function getProduct($productName){
+                     $baseUrl = "https://www.amazon.in/s?k=".str_replace(' ',"+",$productName);
+                     $html = $this->client->load($baseUrl);
+                     $urlList = $html->find('.sg-col-inner a');
+                     $productUrl = "";
+                     foreach($urlList as $url){
+                            if(strpos($url,"/dp/")!==false){
+                                   $productUrl =  $url->href;
+                                   break;
+                            }
+                     }
+                     echo "https://www.amazon.in".$productUrl;
+                     return "https://www.amazon.in".$productUrl;
               }
               public function getProductSummary(string $productName){
                      $search = new Search($this->baseWebsite,$productName);
@@ -78,11 +95,17 @@
               }
               public function getTrusted($productUrl){
                      $this->productUrl = $productUrl;
-                     $reviewMetaUrl = "https://reviewmeta.com/amazon-in/".explode("/",$productUrl)[4];
+                     $reviewMetaUrl = "https://reviewmeta.com/amazon-in/".explode("/",$productUrl)[5];
                      $html = $this->client->load($reviewMetaUrl);
                      $trustedReviewUrl = $html->find("div[class=show-actual-review] a",0)->href;
                      $html = $this->client->load($trustedReviewUrl);
                      $reviewText = $html->find("span[data-hook=review-body] span",0)->innertext;
+                     $common = array();
+                     echo $reviewMetaUrl;
+                     //row title_analysis_show
                      return array("reviewText"=>$reviewText);
               }
        }
+       $x = new Amazon();
+//       $x->getTrusted("https://www.amazon.in/Samsung-Storage-sAMOLED-Replacement-SM-M215GLBDINS/dp/B098NGDNMT");
+$x->getProduct("oppo A31");

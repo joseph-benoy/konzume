@@ -27,24 +27,33 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => 'dev-master',
-    'version' => 'dev-master',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => '68c92b7c073f080a7bce11712b00fe848dc0fff7',
+    'reference' => '36ecfd4ca0bc6cc079047caa5cb3663687d092b8',
     'name' => '__root__',
   ),
   'versions' => 
   array (
     '__root__' => 
     array (
-      'pretty_version' => 'dev-master',
-      'version' => 'dev-master',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => '68c92b7c073f080a7bce11712b00fe848dc0fff7',
+      'reference' => '36ecfd4ca0bc6cc079047caa5cb3663687d092b8',
+    ),
+    'clue/socket-raw' => 
+    array (
+      'pretty_version' => 'v1.5.0',
+      'version' => '1.5.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '089ffa05fa75bdc4e919aac44bbc435b3ef640ef',
     ),
     'fabpot/goutte' => 
     array (
@@ -81,6 +90,24 @@ private static $installed = array (
       array (
       ),
       'reference' => '1dc8d9cba3897165e16d12bb13d813afb1eb3fe7',
+    ),
+    'nesk/puphpeteer' => 
+    array (
+      'pretty_version' => '2.0.0',
+      'version' => '2.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '0d51359c98cb6500edc033260be5944b23cbf573',
+    ),
+    'nesk/rialto' => 
+    array (
+      'pretty_version' => '1.4.0',
+      'version' => '1.4.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'a3db615d845cca42135fa1e271b323ffe904b83c',
     ),
     'php-http/async-client-implementation' => 
     array (
@@ -314,6 +341,15 @@ private static $installed = array (
       ),
       'reference' => '1100343ed1a92e3a38f9ae122fc0eb21602547be',
     ),
+    'symfony/process' => 
+    array (
+      'pretty_version' => 'v5.3.7',
+      'version' => '5.3.7.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '38f26c7d6ed535217ea393e05634cb0b244a1967',
+    ),
     'symfony/service-contracts' => 
     array (
       'pretty_version' => 'v2.4.0',
@@ -322,6 +358,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'f040a30e04b57fbcc9c6cbcf4dbaa96bd318b9bb',
+    ),
+    'vierbergenlars/php-semver' => 
+    array (
+      'pretty_version' => '3.0.2',
+      'version' => '3.0.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'be22b86be4c1133acc42fd1685276792024af5f9',
     ),
   ),
 );

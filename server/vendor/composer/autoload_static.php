@@ -32,11 +32,13 @@ class ComposerStaticInit0cbb33423b2788b9b6377e11216b310d
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Contracts\\Service\\' => 26,
             'Symfony\\Contracts\\HttpClient\\' => 29,
+            'Symfony\\Component\\Process\\' => 26,
             'Symfony\\Component\\Mime\\' => 23,
             'Symfony\\Component\\HttpClient\\' => 29,
             'Symfony\\Component\\DomCrawler\\' => 29,
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\BrowserKit\\' => 29,
+            'Socket\\Raw\\' => 11,
         ),
         'P' => 
         array (
@@ -44,6 +46,11 @@ class ComposerStaticInit0cbb33423b2788b9b6377e11216b310d
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
             'Psr\\Container\\' => 14,
+        ),
+        'N' => 
+        array (
+            'Nesk\\Rialto\\' => 12,
+            'Nesk\\Puphpeteer\\' => 16,
         ),
         'G' => 
         array (
@@ -91,6 +98,10 @@ class ComposerStaticInit0cbb33423b2788b9b6377e11216b310d
         array (
             0 => __DIR__ . '/..' . '/symfony/http-client-contracts',
         ),
+        'Symfony\\Component\\Process\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/process',
+        ),
         'Symfony\\Component\\Mime\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/mime',
@@ -111,6 +122,10 @@ class ComposerStaticInit0cbb33423b2788b9b6377e11216b310d
         array (
             0 => __DIR__ . '/..' . '/symfony/browser-kit',
         ),
+        'Socket\\Raw\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/clue/socket-raw/src',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
@@ -127,6 +142,14 @@ class ComposerStaticInit0cbb33423b2788b9b6377e11216b310d
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'Nesk\\Rialto\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nesk/rialto/src',
+        ),
+        'Nesk\\Puphpeteer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nesk/puphpeteer/src',
         ),
         'GuzzleHttp\\Psr7\\' => 
         array (
@@ -146,6 +169,20 @@ class ComposerStaticInit0cbb33423b2788b9b6377e11216b310d
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'v' => 
+        array (
+            'vierbergenlars\\SemVer\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/vierbergenlars/php-semver/src',
+            ),
+            'vierbergenlars\\LibJs\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/vierbergenlars/php-semver/src',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
@@ -158,6 +195,11 @@ class ComposerStaticInit0cbb33423b2788b9b6377e11216b310d
         'simplehtmldom\\HtmlDocument' => __DIR__ . '/..' . '/simplehtmldom/simplehtmldom/HtmlDocument.php',
         'simplehtmldom\\HtmlNode' => __DIR__ . '/..' . '/simplehtmldom/simplehtmldom/HtmlNode.php',
         'simplehtmldom\\HtmlWeb' => __DIR__ . '/..' . '/simplehtmldom/simplehtmldom/HtmlWeb.php',
+        'vierbergenlars\\SemVer\\Internal\\Comparator' => __DIR__ . '/..' . '/vierbergenlars/php-semver/src/vierbergenlars/SemVer/internal.php',
+        'vierbergenlars\\SemVer\\Internal\\Exports' => __DIR__ . '/..' . '/vierbergenlars/php-semver/src/vierbergenlars/SemVer/internal.php',
+        'vierbergenlars\\SemVer\\Internal\\G' => __DIR__ . '/..' . '/vierbergenlars/php-semver/src/vierbergenlars/SemVer/internal.php',
+        'vierbergenlars\\SemVer\\Internal\\Range' => __DIR__ . '/..' . '/vierbergenlars/php-semver/src/vierbergenlars/SemVer/internal.php',
+        'vierbergenlars\\SemVer\\Internal\\SemVer' => __DIR__ . '/..' . '/vierbergenlars/php-semver/src/vierbergenlars/SemVer/internal.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -165,6 +207,7 @@ class ComposerStaticInit0cbb33423b2788b9b6377e11216b310d
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit0cbb33423b2788b9b6377e11216b310d::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit0cbb33423b2788b9b6377e11216b310d::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit0cbb33423b2788b9b6377e11216b310d::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit0cbb33423b2788b9b6377e11216b310d::$classMap;
 
         }, null, ClassLoader::class);

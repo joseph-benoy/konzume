@@ -1,0 +1,8 @@
+./server/node_modules
+./server/vendor
+node_modules
+vendor
+/server/node_modules
+/server/vendor
+server/node_modules
+server/vendor
