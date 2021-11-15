@@ -1,9 +1,6 @@
 <?php
-       require_once "search.php";
        require_once "/media/joseph/Works/Web/Projects/konzume/server/vendor/autoload.php";
-       use Nesk\Puphpeteer\Puppeteer;
        use simplehtmldom\HtmlWeb;
-       use Nesk\Rialto\Data\JsFunction;
        class Amazon{
               private $baseWebsite = "amazon";
               private $productUrl = null;
@@ -23,12 +20,10 @@
                                    break;
                             }
                      }
-                     echo "https://www.amazon.in".$productUrl;
                      return "https://www.amazon.in".$productUrl;
               }
               public function getProductSummary(string $productName){
-                     $search = new Search($this->baseWebsite,$productName);
-                     $this->productUrl = $search->getProduct();
+                     $this->productUrl = $this->getProduct($productName);
                      $html = $this->client->load($this->productUrl);
                      $value = "";
                      $value = $html->find('#imgTagWrapperId img',0)->src;
@@ -45,7 +40,6 @@
                      return array("productUrl"=>$this->productUrl,'imgUrl'=>$value,'productTitle'=>$html->find('#productTitle',0)->innertext,"price"=>$price);
               }
               public function getProductDetails($productUrl){
-                     $search = new Search($this->baseWebsite);
                      $this->productUrl = $productUrl;
                      $html = $this->client->load($this->productUrl);
                      $imgUrl = "";
@@ -107,5 +101,4 @@
               }
        }
        $x = new Amazon();
-//       $x->getTrusted("https://www.amazon.in/Samsung-Storage-sAMOLED-Replacement-SM-M215GLBDINS/dp/B098NGDNMT");
-$x->getProduct("oppo A31");
+       print_r($x->getProductDetails("https://www.amazon.in/Oppo-Mystery-Storage-Additional-Exchange/dp/B08444S68L/ref=ice_ac_b_dpb?keywords=oppo+A31&qid"));
