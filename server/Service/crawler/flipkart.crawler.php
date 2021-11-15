@@ -2,7 +2,6 @@
        require_once "/media/joseph/Works/Web/Projects/konzume/server/vendor/autoload.php";
        use simplehtmldom\HtmlWeb;
        class Flipkart{
-              private $baseWebsite = "flipkart";
               private $productUrl = null;
               private $client = null;
               public function __construct()
