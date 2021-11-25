@@ -27,7 +27,7 @@ class Database{
                 $insert_query.=")";
             }
             $statement = $this->executeStatement($insert_query,$params,$typeString);
-            $result = $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+            $result = array("message"=>"successfully inserted");
             $statement->close();
             return result;
         }
@@ -52,6 +52,16 @@ class Database{
                 }
             }
             return $statement;
+        }
+        catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
+    public function insertEnc($query = "",$params = [],$typeString){
+        try{
+            $statement = $this->executeStatement($query,$params,$typeString);
+            $statement->close();
+            return result;
         }
         catch(Exception $e){
             echo $e->getMessage();
