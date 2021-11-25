@@ -15,4 +15,11 @@ class User extends Database{
     public function createUser($userData){
         $this->insert('USER',$userData,"sssss");
     }
+    /**
+     * get the details of user based on email
+     * @param string email
+     */
+    public function getUser($email){
+        return "user";
+    }
 }
