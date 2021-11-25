@@ -20,6 +20,9 @@ class User extends Database{
      * @param string email
      */
     public function getUser($email){
-        return "user";
+        return "get user";
+    }
+    public function updateUser($email,$data){
+        return "updated email";
     }
 }
