@@ -97,5 +97,3 @@
                      return array("reviewText"=>$reviewText);
               }
        }
-       $x = new Amazon();
-       print_r($x->getTrusted("https://www.amazon.in/iQOO-Storage-Processor-FlashCharge-Replacement/dp/B07WJTMPPP"));

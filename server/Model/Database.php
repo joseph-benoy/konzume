@@ -12,7 +12,7 @@ class Database{
             echo $e->getMessage();
         }
     }
-    public function insert($tableName,$columnList = null,$params = [],$typeString){
+    public function insert($tableName,$params = [],$typeString,$columnList = null){
         try{
             $insert_query = null;
             if($columnList==null){
