@@ -1,12 +1,12 @@
 <?php
-require_once "./Database.php";
+require_once "Database.php";
 class User extends Database{
     /**
      * insert temporary user before OTP varification
      * @param array tempUserData
      */
     public function insertTempUser($tempUserData){
-        echo "temp user";
+        return "inserted temp user";
     }
     /**
      * create user permenant
