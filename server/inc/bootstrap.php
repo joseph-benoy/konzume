@@ -6,3 +6,4 @@
               require_once PROJECT_ROOT_PATH."./vendor/autoload.php";
               require_once PROJECT_ROOT_PATH."./Service/crawler/amazon.crawler.php";
               require_once PROJECT_ROOT_PATH."./Service/crawler/flipkart.crawler.php";
+              require_once PROJECT_ROOT_PATH."./inc/config.php";

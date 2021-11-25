@@ -94,10 +94,8 @@
                      $html = $this->client->load($trustedReviewUrl);
                      $reviewText = $html->find("span[data-hook=review-body] span",0)->innertext;
                      $common = array();
-                     echo $reviewMetaUrl;
-                     //row title_analysis_show
                      return array("reviewText"=>$reviewText);
               }
        }
        $x = new Amazon();
-       print_r($x->getProductDetails("https://www.amazon.in/Oppo-Mystery-Storage-Additional-Exchange/dp/B08444S68L/ref=ice_ac_b_dpb?keywords=oppo+A31&qid"));
+       print_r($x->getTrusted("https://www.amazon.in/iQOO-Storage-Processor-FlashCharge-Replacement/dp/B07WJTMPPP"));

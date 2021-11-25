@@ -28,5 +28,3 @@
                      );
               }
        }
-       $x = new Flipkart();
-       print_r($x->getProductDetails("samsung f12"));
