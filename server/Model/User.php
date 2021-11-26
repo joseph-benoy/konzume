@@ -6,7 +6,19 @@ class User extends Database{
      * @param array tempUserData
      */
     public function insertTempUser($tempUserData){
-        return "inserted temp user";
+        if(count($tempUserData)!=1){
+            return array("error"=>"parameter error");
+        }
+        if(!array_key_exists("email",$tempUserData)){
+            return array("error"=>"no email");
+        }
+        $otp = rand(1000,9999);
+        if($this->insert("INSERT INTO TEMP_USER(EMAIL,OTP)VALUES(?,?)",array(...array_values($tempUserData),$otp),"si")){
+            return array("success"=>"created temp user");
+        }
+        else{
+            return array("error"=>"parameter error");
+        }
     }
     /**
      * create user permenant

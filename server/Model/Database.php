@@ -12,34 +12,27 @@ class Database{
             echo $e->getMessage();
         }
     }
-    public function insert($tableName,$params = [],$typeString,$columnList = null){
+    public function insert($query,$params,$typeString){
         try{
-            $insert_query = null;
-            if($columnList==null){
-                $insert_query = "INSERT INTO {$tableName} VALUES(";
-                $no_of_values = count($params);
-                for($i=1;$i<=$no_of_values;$i++){
-                    $insert_query.="?";
-                    if($i<$no_of_values){
-                        $insert_query.=",";
-                    }
-                }
-                $insert_query.=")";
-            }
-            $statement = $this->executeStatement($insert_query,$params,$typeString);
-            $result = array("message"=>"successfully inserted");
+            $statement = $this->executeStatement($query,$params,$typeString);
             $statement->close();
-            return result;
+            if($statement->error==null){
+                return true;
+            }
+            else{
+                return $statement;
+            }
+            return $statement;
         }
         catch(Exception $e){
             echo $e->getMessage();
         }
     }
-    public function executeStatement($query = "",$params = [],$typeString){
+    public function executeStatement($query,$params,$typeString){
         try{
             $statement = $this->connection->prepare($query);
             if($statement==false){
-                throw New Exception("Unable to do prepared statement: " . $query);
+                throw New Exception("Unable to do prepared statement: (preparation error) " . $query);
             }
             else{
                 if($params){

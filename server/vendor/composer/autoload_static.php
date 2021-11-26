@@ -46,6 +46,7 @@ class ComposerStaticInit0cbb33423b2788b9b6377e11216b310d
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
             'Psr\\Container\\' => 14,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'N' => 
         array (
@@ -142,6 +143,10 @@ class ComposerStaticInit0cbb33423b2788b9b6377e11216b310d
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'Nesk\\Rialto\\' => 
         array (

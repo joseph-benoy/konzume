@@ -5,7 +5,7 @@ class UserController extends BaseController{
     /**
      * /user/usertemp endpoint
      */
-    public function usertemp(){
+    public function requestotp(){
         $strErrorDesc = '';
         $requestMethod = $_SERVER['REQUEST_METHOD'];
         if(strtoupper($requestMethod)=='POST'){
