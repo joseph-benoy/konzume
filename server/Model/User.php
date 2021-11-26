@@ -14,7 +14,8 @@ class User extends Database{
         }
         $otp = rand(1000,9999);
         if($this->insert("INSERT INTO TEMP_USER(EMAIL,OTP)VALUES(?,?)",array(...array_values($tempUserData),$otp),"si")){
-            return array("success"=>"created temp user");
+            $mail = new Mail();
+            $mail->sendMail($tempUserData['email'],"Verification code","<h1>{$otp}</h1>",true);
         }
         else{
             return array("error"=>"parameter error");
