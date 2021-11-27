@@ -67,8 +67,11 @@ class User extends Database{
         }  
         $tempUserData = $this->select("SELECT * FROM TEMP_USER WHERE EMAIL=?",array($data['email']),"s");
         if($tempUserData!=false){
-            if($tempUserData['VERIFIED']=="yes"){
-                if($this->insert("INSERT INTO USER(FNAME,LNAME,EMAIL,PASS)"))
+            if($tempUserData[0]["VERIFIED"]=="yes"){
+                if($this->insert("INSERT INTO USER(FNAME,LNAME,EMAIL,PASS) VALUES(?,?,?,AES_ENCRYPT(?,?))",array(...array_values($data),DB_ENC_KEY),"sssss")){
+                    
+                    return array("success"=>"created user account");
+                }
             }
             else{
                 return array("error"=>"otp verification is not done");
