@@ -9,7 +9,7 @@ class Mail{
         $this->mail->Host = 'smtp.gmail.com';       // Specify main and backup SMTP servers 
         $this->mail->SMTPAuth = true;               // Enable SMTP authentication 
         $this->mail->Username = 'josephbenoy03@gmail.com';   // SMTP username 
-        $this->mail->Password = 'jesuschrist3057';   // SMTP password 
+        $this->mail->Password = '';   // SMTP password 
         $this->mail->SMTPSecure = 'tls';            // Enable TLS encryption, `ssl` also accepted 
         $this->mail->Port = 587; 
     }
