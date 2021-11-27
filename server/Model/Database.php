@@ -84,4 +84,20 @@ class Database{
             echo $e->getMessage();
         }
     }
+    public function delete($query,$params,$typeString){
+        try{
+            $statement = $this->executeStatement($query,$params,$typeString);
+            $statement->close();
+            if($statement->error==null){
+                return true;
+            }
+            else{
+                return $statement;
+            }
+            return $statement;
+        }
+        catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
 }                    

@@ -69,8 +69,15 @@ class User extends Database{
         if($tempUserData!=false){
             if($tempUserData[0]["VERIFIED"]=="yes"){
                 if($this->insert("INSERT INTO USER(FNAME,LNAME,EMAIL,PASS) VALUES(?,?,?,AES_ENCRYPT(?,?))",array(...array_values($data),DB_ENC_KEY),"sssss")){
-                    
-                    return array("success"=>"created user account");
+                    if($this->delete("DELETE FROM TEMP_USER WHERE EMAIL=?",array($data['email']),"s")){
+                        return array("success"=>"created user account");
+                    }
+                    else{
+                        return array("error"=>"cant delete from otp table");
+                    }
+                }
+                else{
+                    return array("success"=>"cant insert to user table");
                 }
             }
             else{
