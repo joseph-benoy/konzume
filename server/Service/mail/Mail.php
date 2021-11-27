@@ -15,24 +15,29 @@ class Mail{
     }
     public function sendMail($mailto,$subject="",$bodyContent,$isHtml=true){
         try{
-            $mail->setFrom('josephbenoy03@gmail.com', 'Konzume'); 
-            $mail->addReplyTo('reply@konzume.com', 'Konzume'); 
+            $this->mail->setFrom('josephbenoy03@gmail.com', 'Konzume'); 
+            $this->mail->addReplyTo('reply@konzume.com', 'Konzume'); 
             
             // Add a recipient 
-            $mail->addAddress($mailto); 
+            $this->mail->addAddress($mailto); 
             
             //$mail->addCC('cc@example.com'); 
             //$mail->addBCC('bcc@example.com'); 
             
             // Set email format to HTML 
-            $mail->isHTML(isHtml); 
+            $this->mail->isHTML(isHtml); 
             
             // Mail subject 
-            $mail->Subject = $subject; 
+            $this->mail->Subject = $subject; 
             
             // Mail body content 
-            $mail->Body    = $bodyContent; 
-            $this->mail->send();
+            $this->mail->Body    = $bodyContent; 
+            if($this->mail->send()==1){
+                return true;
+            }            
+            else{
+                return false;
+            }
         }
         catch(Exception $e){
             echo $e->getMessage();

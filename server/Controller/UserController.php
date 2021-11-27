@@ -107,4 +107,31 @@ class UserController extends BaseController{
                 $this->sendOutput(array(),$strErrorDesc);
         }        
     }
+    /**
+     * verify opt
+     */
+    public function verifyotp(){
+        $strErrorDesc = '';
+        $requestMethod = $_SERVER['REQUEST_METHOD'];
+        if(strtoupper($requestMethod)=='POST'){
+            try{
+                $userModel = new User();
+                $data = json_encode($userModel->updateUser($_POST),JSON_UNESCAPED_SLASHES);
+            }
+            catch(Error $e){
+                   $errorDesc = "Product model error!";
+                   http_response_code(500);
+            }
+        }
+        else{
+                $strErrorDesc = 'Method not supported';
+                http_response_code(422);
+        }
+        if(!$strErrorDesc){
+                $this->sendOutput(array('Content-Type: application/json'),$data);
+        }
+        else{
+                $this->sendOutput(array(),$strErrorDesc);
+        }  
+    }
 }
