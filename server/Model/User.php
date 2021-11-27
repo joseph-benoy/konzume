@@ -15,7 +15,12 @@ class User extends Database{
         $otp = rand(1000,9999);
         if($this->insert("INSERT INTO TEMP_USER(EMAIL,OTP)VALUES(?,?)",array(...array_values($tempUserData),$otp),"si")){
             $mail = new Mail();
-            $mail->sendMail($tempUserData['email'],"Verification code","<h1>{$otp}</h1>",true);
+            if($mail->sendMail($tempUserData['email'],"Verification code","<h1>{$otp}</h1>",true)){
+                return array("success"=>"otp send successfully");
+            }
+            else{
+                return array("error"=>"otp failed");
+            }
         }
         else{
             return array("error"=>"parameter error");
@@ -37,5 +42,17 @@ class User extends Database{
     }
     public function updateUser($email,$data){
         return "updated email";
+    }
+    public function verifyTempUser($data){
+        if(count($data)!=2){
+            return array("error"=>"parameter error");
+        }
+        if(!array_key_exists("email",$data)){
+            return array("error"=>"no email");
+        }
+        if(!array_key_exists("otp",$data)){
+            return array("error"=>"no otp");
+        }
+        
     }
 }
