@@ -55,7 +55,12 @@ class User extends Database{
         }
         $tempUserData = $this->select("SELECT * FROM TEMP_USER WHERE EMAIL=? AND OTP=?",array_values($data),"si");
         if($tempUserData!=false){
-
+            if($this->update("UPDATE TEMP_USER SET VERIFIED =? WHERE EMAIL=?",array("yes",$data['email']),"ss")){
+                return array("success"=>"verified the otp");
+            }
+            else{
+                return array("error"=>"cant update tempuser verified");
+            }
         }
         else{
             return array("error"=>"wrong otp");
