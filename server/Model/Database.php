@@ -60,4 +60,22 @@ class Database{
             echo $e->getMessage();
         }
     }
+    public function select($query,$params,$typeString){
+        try{
+            $statement = $this->executeStatement($query,$params,$typeString);
+            if(!($result = $statement->get_result())){
+                throw new Exception("cant get result");
+            }
+            if(!($rows=$result->fetch_all(MYSQLI_ASSOC))){
+                return false;
+            }
+            else{
+                return $rows;
+            }
+            $statement->close();
+        }
+        catch(Exception $e){
+            return array("error"=>$e->getMessage());
+        }
+    }
 }                    

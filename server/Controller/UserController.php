@@ -116,7 +116,7 @@ class UserController extends BaseController{
         if(strtoupper($requestMethod)=='POST'){
             try{
                 $userModel = new User();
-                $data = json_encode($userModel->updateUser($_POST),JSON_UNESCAPED_SLASHES);
+                $data = json_encode($userModel->verifyTempUser($_POST),JSON_UNESCAPED_SLASHES);
             }
             catch(Error $e){
                    $errorDesc = "Product model error!";

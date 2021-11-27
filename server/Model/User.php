@@ -53,6 +53,12 @@ class User extends Database{
         if(!array_key_exists("otp",$data)){
             return array("error"=>"no otp");
         }
-        
+        $tempUserData = $this->select("SELECT * FROM TEMP_USER WHERE EMAIL=? AND OTP=?",array_values($data),"si");
+        if($tempUserData!=false){
+
+        }
+        else{
+            return array("error"=>"wrong otp");
+        }
     }
 }
