@@ -9,3 +9,5 @@
               require_once PROJECT_ROOT_PATH."./inc/config.php";
               require_once PROJECT_ROOT_PATH."./Model/User.php";
               require_once PROJECT_ROOT_PATH."./Service/mail/Mail.php";
+              require_once PROJECT_ROOT_PATH."./Service/jwt/Jwt.php";
+

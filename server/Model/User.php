@@ -101,10 +101,11 @@ class User extends Database{
         $userData = $this->select("SELECT FNAME,LNAME,EMAIL,CAST(AES_DECRYPT(PASS,?) AS CHAR) AS PASSWORD FROM USER WHERE EMAIL=?",array(DB_ENC_KEY,$data['email']),"ss");
         if($userData!=false){
             if($userData[0]['PASSWORD']==$data['password']){
-                return array("success"=>"login successfull");
+                $jwt = (new JwtLogin())->generateToken(array($userData[0]['ID'],$userData[0]['FNAME'],$userData[0]['LNAME'],$userData[0]['EMAIL']));
+                return array("success"=>"login successfull","jwt"=>$jwt);
             }
             else{
-                return array("error"=>"login failed");
+                return array("error"=>"wrong password");
             }
         }
         else{

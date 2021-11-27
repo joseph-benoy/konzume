@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '2dab29d3d0ef731e21145c525aa0f227396a1a89',
+        'reference' => '1f0e69931ceecdff5861f5cc9cf7b7e709cf1853',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '2dab29d3d0ef731e21145c525aa0f227396a1a89',
+            'reference' => '1f0e69931ceecdff5861f5cc9cf7b7e709cf1853',
             'dev_requirement' => false,
         ),
         'clue/socket-raw' => array(
@@ -35,6 +35,15 @@
             'install_path' => __DIR__ . '/../fabpot/goutte',
             'aliases' => array(),
             'reference' => '293e754f0be2f1e85f9b31262cb811de39874e03',
+            'dev_requirement' => false,
+        ),
+        'firebase/php-jwt' => array(
+            'pretty_version' => 'v5.5.1',
+            'version' => '5.5.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../firebase/php-jwt',
+            'aliases' => array(),
+            'reference' => '83b609028194aa042ea33b5af2d41a7427de80e6',
             'dev_requirement' => false,
         ),
         'guzzlehttp/guzzle' => array(
