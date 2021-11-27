@@ -50,16 +50,6 @@ class Database{
             echo $e->getMessage();
         }
     }
-    public function insertEnc($query = "",$params = [],$typeString){
-        try{
-            $statement = $this->executeStatement($query,$params,$typeString);
-            $statement->close();
-            return result;
-        }
-        catch(Exception $e){
-            echo $e->getMessage();
-        }
-    }
     public function select($query,$params,$typeString){
         try{
             $statement = $this->executeStatement($query,$params,$typeString);

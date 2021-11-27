@@ -26,23 +26,6 @@ class User extends Database{
             return array("error"=>"parameter error");
         }
     }
-    /**
-     * create user permenant
-     * @param array userData
-     */
-    public function createUser($userData){
-        $this->insert('USER',$userData,"sssss");
-    }
-    /**
-     * get the details of user based on email
-     * @param string email
-     */
-    public function getUser($email){
-        return "get user";
-    }
-    public function updateUser($email,$data){
-        return "updated email";
-    }
     public function verifyTempUser($data){
         if(count($data)!=2){
             return array("error"=>"parameter error");
@@ -64,6 +47,35 @@ class User extends Database{
         }
         else{
             return array("error"=>"wrong otp");
+        }
+    }
+    public function createUserAccount($data){
+        if(count($data)!=4){
+            return array("error"=>"parameter count error");
+        }
+        if(!array_key_exists("email",$data)){
+            return array("error"=>"no email");
+        }
+        if(!array_key_exists("fname",$data)){
+            return array("error"=>"no fname");
+        }    
+        if(!array_key_exists("lname",$data)){
+            return array("error"=>"no lname");
+        } 
+        if(!array_key_exists("password",$data)){
+            return array("error"=>"no password");
+        }  
+        $tempUserData = $this->select("SELECT * FROM TEMP_USER WHERE EMAIL=?",array($data['email']),"s");
+        if($tempUserData!=false){
+            if($tempUserData['VERIFIED']=="yes"){
+                if($this->insert("INSERT INTO USER(FNAME,LNAME,EMAIL,PASS)"))
+            }
+            else{
+                return array("error"=>"otp verification is not done");
+            }
+        }
+        else{
+            return array("error"=>"otp verification is not done");
         }
     }
 }
