@@ -88,4 +88,27 @@ class User extends Database{
             return array("error"=>"otp verification is not done");
         }
     }
+    public function verifyUser($data){
+        if(count($data)!=2){
+            return array("error"=>"parameter count error");
+        }
+        if(!array_key_exists("email",$data)){
+            return array("error"=>"no email");
+        }
+        if(!array_key_exists("password",$data)){
+            return array("error"=>"password");
+        }  
+        $userData = $this->select("SELECT FNAME,LNAME,EMAIL,CAST(AES_DECRYPT(PASS,?) AS CHAR) AS PASSWORD FROM USER WHERE EMAIL=?",array(DB_ENC_KEY,$data['email']),"ss");
+        if($userData!=false){
+            if($userData[0]['PASSWORD']==$data['password']){
+                return array("success"=>"login successfull");
+            }
+            else{
+                return array("error"=>"login failed");
+            }
+        }
+        else{
+            return array("error"=>"username doesnot exits");
+        }
+    }
 }
