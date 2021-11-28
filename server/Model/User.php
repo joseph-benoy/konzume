@@ -5,6 +5,9 @@ function set(){
     
 }
 class User extends Database{
+    private function validateUserToken(){
+        return (new JwtLogin())->verify();
+    }
     /**
      * insert temporary user before OTP varification
      * @param array tempUserData
@@ -117,21 +120,13 @@ class User extends Database{
         }
     }
     public function updateUser($data){
-        if(count($data)!=4){
-            return array("error"=>"parameter count error");
+        $tokenData = $this->validateUserToken();
+        if($tokenData){
+            return array("success"=>$tokenData);
         }
-        if(!array_key_exists("email",$data)){
-            return array("error"=>"no email");
+        else{
+            return array("error"=>"access denied");
         }
-        if(!array_key_exists("fname",$data)){
-            return array("error"=>"no fname");
-        }    
-        if(!array_key_exists("lname",$data)){
-            return array("error"=>"no lname");
-        } 
-        if(!array_key_exists("password",$data)){
-            return array("error"=>"no password");
-        } 
     }
 }
 ob_end_flush();

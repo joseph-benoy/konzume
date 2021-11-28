@@ -9,7 +9,7 @@ class JwtLogin{
     /**
      * token verification function
      */
-    public function verify($jwt){
+    public function verify(){
         if (! preg_match('/Bearer\s(\S+)/', $_SERVER['HTTP_AUTHORIZATION'], $matches)) {
             return false;
         }
@@ -20,7 +20,8 @@ class JwtLogin{
             }
             else{
                 try{
-                    
+                    $decoded = JWT::decode($jwt, $this->secretKey, array('HS256'));
+                    return $decoded;
                 }
                 catch(Exception $e){
                     return false;
