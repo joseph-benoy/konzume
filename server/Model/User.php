@@ -1,5 +1,9 @@
 <?php
+ob_start();
 require_once "Database.php";
+function set(){
+    
+}
 class User extends Database{
     /**
      * insert temporary user before OTP varification
@@ -98,11 +102,11 @@ class User extends Database{
         if(!array_key_exists("password",$data)){
             return array("error"=>"password");
         }  
-        $userData = $this->select("SELECT FNAME,LNAME,EMAIL,CAST(AES_DECRYPT(PASS,?) AS CHAR) AS PASSWORD FROM USER WHERE EMAIL=?",array(DB_ENC_KEY,$data['email']),"ss");
+        $userData = $this->select("SELECT ID,FNAME,LNAME,EMAIL,CAST(AES_DECRYPT(PASS,?) AS CHAR) AS PASSWORD FROM USER WHERE EMAIL=?",array(DB_ENC_KEY,$data['email']),"ss");
         if($userData!=false){
             if($userData[0]['PASSWORD']==$data['password']){
                 $jwt = (new JwtLogin())->generateToken(array($userData[0]['ID'],$userData[0]['FNAME'],$userData[0]['LNAME'],$userData[0]['EMAIL']));
-                return array("success"=>"login successfull","jwt"=>$jwt);
+                return array("jwt"=>$jwt);
             }
             else{
                 return array("error"=>"wrong password");
@@ -112,4 +116,22 @@ class User extends Database{
             return array("error"=>"username doesnot exits");
         }
     }
+    public function updateUser($data){
+        if(count($data)!=4){
+            return array("error"=>"parameter count error");
+        }
+        if(!array_key_exists("email",$data)){
+            return array("error"=>"no email");
+        }
+        if(!array_key_exists("fname",$data)){
+            return array("error"=>"no fname");
+        }    
+        if(!array_key_exists("lname",$data)){
+            return array("error"=>"no lname");
+        } 
+        if(!array_key_exists("password",$data)){
+            return array("error"=>"no password");
+        } 
+    }
 }
+ob_end_flush();

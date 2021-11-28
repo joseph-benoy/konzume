@@ -73,6 +73,49 @@
             "install-path": "../clue/socket-raw"
         },
         {
+            "name": "delight-im/http",
+            "version": "v2.1.0",
+            "version_normalized": "2.1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/delight-im/PHP-HTTP.git",
+                "reference": "a5c2c4eae1dd3207f797984e8f64f2d71ed889dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/delight-im/PHP-HTTP/zipball/a5c2c4eae1dd3207f797984e8f64f2d71ed889dd",
+                "reference": "a5c2c4eae1dd3207f797984e8f64f2d71ed889dd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "time": "2021-10-12T18:52:29+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Delight\\Http\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Hypertext Transfer Protocol (HTTP) utilities for PHP",
+            "homepage": "https://github.com/delight-im/PHP-HTTP",
+            "keywords": [
+                "headers",
+                "http",
+                "https"
+            ],
+            "support": {
+                "issues": "https://github.com/delight-im/PHP-HTTP/issues",
+                "source": "https://github.com/delight-im/PHP-HTTP/tree/v2.1.0"
+            },
+            "install-path": "../delight-im/http"
+        },
+        {
             "name": "fabpot/goutte",
             "version": "v4.0.1",
             "version_normalized": "4.0.1.0",
@@ -572,6 +615,54 @@
                 "source": "https://github.com/nesk/rialto/tree/1.4.0"
             },
             "install-path": "../nesk/rialto"
+        },
+        {
+            "name": "paragonie/cookie",
+            "version": "v3.2.0",
+            "version_normalized": "3.2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paragonie/PHP-Cookie.git",
+                "reference": "aae061170f7093e2cdc9dab5949fd1aab5bec2a7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paragonie/PHP-Cookie/zipball/aae061170f7093e2cdc9dab5949fd1aab5bec2a7",
+                "reference": "aae061170f7093e2cdc9dab5949fd1aab5bec2a7",
+                "shasum": ""
+            },
+            "require": {
+                "delight-im/http": "^2.0",
+                "php": "^7"
+            },
+            "time": "2017-06-21T16:15:52+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "ParagonIE\\Cookie\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Modern cookie management for PHP 7",
+            "homepage": "https://github.com/paragonie/PHP-Cookie",
+            "keywords": [
+                "cookie",
+                "cookies",
+                "csrf",
+                "http",
+                "same-site",
+                "samesite",
+                "xss"
+            ],
+            "support": {
+                "issues": "https://github.com/paragonie/PHP-Cookie/issues",
+                "source": "https://github.com/paragonie/PHP-Cookie/tree/master"
+            },
+            "install-path": "../paragonie/cookie"
         },
         {
             "name": "phpmailer/phpmailer",

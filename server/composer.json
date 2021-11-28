@@ -5,6 +5,7 @@
         "simplehtmldom/simplehtmldom": "dev-master",
         "nesk/puphpeteer": "^2.0",
         "phpmailer/phpmailer": "^6.5",
-        "firebase/php-jwt": "^5.5"
+        "firebase/php-jwt": "^5.5",
+        "paragonie/cookie": "^3.2"
     }
 }

@@ -10,7 +10,23 @@ class JwtLogin{
      * token verification function
      */
     public function verify($jwt){
-        
+        if (! preg_match('/Bearer\s(\S+)/', $_SERVER['HTTP_AUTHORIZATION'], $matches)) {
+            return false;
+        }
+        else{
+            $jwt = $matches[1];
+            if(!$jwt){
+                return false;
+            }
+            else{
+                try{
+                    
+                }
+                catch(Exception $e){
+                    return false;
+                }
+            }
+        }
     }
     public function generateToken($data){
         $token = array("data"=>$data);

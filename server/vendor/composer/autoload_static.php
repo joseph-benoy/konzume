@@ -46,6 +46,7 @@ class ComposerStaticInit0cbb33423b2788b9b6377e11216b310d
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
             'Psr\\Container\\' => 14,
+            'ParagonIE\\Cookie\\' => 17,
             'PHPMailer\\PHPMailer\\' => 20,
         ),
         'N' => 
@@ -63,6 +64,10 @@ class ComposerStaticInit0cbb33423b2788b9b6377e11216b310d
         'F' => 
         array (
             'Firebase\\JWT\\' => 13,
+        ),
+        'D' => 
+        array (
+            'Delight\\Http\\' => 13,
         ),
     );
 
@@ -148,6 +153,10 @@ class ComposerStaticInit0cbb33423b2788b9b6377e11216b310d
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
         ),
+        'ParagonIE\\Cookie\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/paragonie/cookie/src',
+        ),
         'PHPMailer\\PHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
@@ -179,6 +188,10 @@ class ComposerStaticInit0cbb33423b2788b9b6377e11216b310d
         'Firebase\\JWT\\' => 
         array (
             0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
+        ),
+        'Delight\\Http\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/delight-im/http/src',
         ),
     );
 

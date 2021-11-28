@@ -26,6 +26,7 @@ return array(
     'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-factory/src', $vendorDir . '/psr/http-message/src'),
     'Psr\\Http\\Client\\' => array($vendorDir . '/psr/http-client/src'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
+    'ParagonIE\\Cookie\\' => array($vendorDir . '/paragonie/cookie/src'),
     'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
     'Nesk\\Rialto\\' => array($vendorDir . '/nesk/rialto/src'),
     'Nesk\\Puphpeteer\\' => array($vendorDir . '/nesk/puphpeteer/src'),
@@ -34,4 +35,5 @@ return array(
     'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
     'Goutte\\' => array($vendorDir . '/fabpot/goutte/Goutte'),
     'Firebase\\JWT\\' => array($vendorDir . '/firebase/php-jwt/src'),
+    'Delight\\Http\\' => array($vendorDir . '/delight-im/http/src'),
 );
