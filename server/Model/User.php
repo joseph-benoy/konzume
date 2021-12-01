@@ -145,4 +145,20 @@ class User extends Database{
             return array("error"=>"access denied");
         }
     }
+    public function getUser($data){
+        $tokenData = $this->validateUserToken();
+        if($tokenData){
+            $email = $tokenData->data[3];
+            $userData = $this->select("SELECT ID,FNAME,LNAME,EMAIL,CAST(AES_DECRYPT(PASS,?) AS CHAR) AS PASSWORD FROM USER WHERE EMAIL=?",array(DB_ENC_KEY,$email),"ss");
+            if($userData!=false){
+                return array("user"=>$userData);
+            }
+            else{
+                return array("error"=>"cant fetch data");
+            }
+        }
+        else{
+            return array("error"=>"access denied");
+        }
+    }
 }

@@ -15,7 +15,7 @@ class UserController extends BaseController{
                 $data = json_encode($userModel->insertTempUser($_POST),JSON_UNESCAPED_SLASHES);
             }
             catch(Error $e){
-                   $errorDesc = "Product model error!";
+                   $errorDesc = "USer model error!";
                    http_response_code(500);
             }
         }
@@ -42,7 +42,7 @@ class UserController extends BaseController{
                 $data = json_encode($userModel->createUserAccount($_POST),JSON_UNESCAPED_SLASHES);
             }
             catch(Error $e){
-                   $errorDesc = "Product model error!";
+                   $errorDesc = "USer model error!";
                    http_response_code(500);
             }
         }
@@ -69,7 +69,7 @@ class UserController extends BaseController{
                 $data = json_encode($userModel->createUser($_POST),JSON_UNESCAPED_SLASHES);
             }
             catch(Error $e){
-                   $errorDesc = "Product model error!";
+                   $errorDesc = "USer model error!";
                    http_response_code(500);
             }
         }
@@ -93,7 +93,7 @@ class UserController extends BaseController{
                 $data = json_encode($userModel->updateUser($_POST),JSON_UNESCAPED_SLASHES);
             }
             catch(Error $e){
-                   $errorDesc = "Product model error!";
+                   $errorDesc = "USer model error!";
                    http_response_code(500);
             }
         }
@@ -120,7 +120,7 @@ class UserController extends BaseController{
                 $data = json_encode($userModel->verifyTempUser($_POST),JSON_UNESCAPED_SLASHES);
             }
             catch(Error $e){
-                   $errorDesc = "Product model error!";
+                   $errorDesc = "USer model error!";
                    http_response_code(500);
             }
         }
@@ -147,7 +147,7 @@ class UserController extends BaseController{
                 $data = json_encode($userModel->verifyUser($_POST),JSON_UNESCAPED_SLASHES);
             }
             catch(Error $e){
-                   $errorDesc = "Product model error!";
+                   $errorDesc = "USer model error!";
                    http_response_code(500);
             }
         }
@@ -171,7 +171,7 @@ class UserController extends BaseController{
                 $data = json_encode($userModel->test($_GET),JSON_UNESCAPED_SLASHES);
             }
             catch(Error $e){
-                   $errorDesc = "Product model error!";
+                   $errorDesc = "USer model error!";
                    http_response_code(500);
             }
         }
@@ -195,7 +195,31 @@ class UserController extends BaseController{
                 $data = json_encode($userModel->updateUser($_POST),JSON_UNESCAPED_SLASHES);
             }
             catch(Error $e){
-                   $errorDesc = "Product model error!";
+                   $errorDesc = "USer model error!";
+                   http_response_code(500);
+            }
+        }
+        else{
+                $strErrorDesc = 'Method not supported';
+                http_response_code(422);
+        }
+        if(!$strErrorDesc){
+                $this->sendOutput(array('Content-Type: application/json'),$data);
+        }
+        else{
+                $this->sendOutput(array(),$strErrorDesc);
+        } 
+    }
+    public function fetch(){
+        $strErrorDesc = '';
+        $requestMethod = $_SERVER['REQUEST_METHOD'];
+        if(strtoupper($requestMethod)=='POST'){
+            try{
+                $userModel = new User();
+                $data = json_encode($userModel->getUser($_POST),JSON_UNESCAPED_SLASHES);
+            }
+            catch(Error $e){
+                   $errorDesc = "USer model error!";
                    http_response_code(500);
             }
         }
