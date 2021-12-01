@@ -1,9 +1,5 @@
 <?php
-ob_start();
 require_once "Database.php";
-function set(){
-    
-}
 class User extends Database{
     private function validateUserToken(){
         return (new JwtLogin())->verify();
@@ -122,11 +118,32 @@ class User extends Database{
     public function updateUser($data){
         $tokenData = $this->validateUserToken();
         if($tokenData){
-            return array("success"=>$tokenData);
+            if(count($data)!=4){
+                return array("error"=>"parameter count error");
+            }
+            if(!array_key_exists("email",$data)){
+                return array("error"=>"no email");
+            }
+            if(!array_key_exists("fname",$data)){
+                return array("error"=>"no fname");
+            }    
+            if(!array_key_exists("lname",$data)){
+                return array("error"=>"no lname");
+            } 
+            if(!array_key_exists("password",$data)){
+                return array("error"=>"no password");
+            } 
+            $updateStatus = "ggg";
+            $updateStatus = $this->update("UPDATE USER SET FNAME=?,LNAME=?,EMAIL=?,AES_ENCRYPT(?,?) WHERE EMAIL=?",array(...array_values($data),DB_ENC_KEY,$tokenData['data']['email']),"ssssss");
+            if($updateStatus){
+                return array("success"=>$updateStatus);
+            }
+            else{
+                return array("error"=>"failed to update user");
+            }
         }
         else{
             return array("error"=>"access denied");
         }
     }
 }
-ob_end_flush();
