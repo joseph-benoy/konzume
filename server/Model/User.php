@@ -133,8 +133,7 @@ class User extends Database{
             if(!array_key_exists("password",$data)){
                 return array("error"=>"no password");
             } 
-            $updateStatus = "ggg";
-            $updateStatus = $this->update("UPDATE USER SET FNAME=?,LNAME=?,EMAIL=?,AES_ENCRYPT(?,?) WHERE EMAIL=?",array(...array_values($data),DB_ENC_KEY,$tokenData['data']['email']),"ssssss");
+            $updateStatus = $this->update("UPDATE USER SET FNAME=?,LNAME=?,EMAIL=?,PASS=AES_ENCRYPT(?,?) WHERE EMAIL=?",array($data['fname'],$data['lname'],$data['email'],$data['password'],DB_ENC_KEY,$tokenData->data[3]),"ssssss");
             if($updateStatus){
                 return array("success"=>$updateStatus);
             }

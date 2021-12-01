@@ -69,7 +69,6 @@ class Database{
         }
     }
     public function update($query,$params,$typeString){
-        return true;
         try{
             $statement = $this->executeStatement($query,$params,$typeString);
             $statement->close();
