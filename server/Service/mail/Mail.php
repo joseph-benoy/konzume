@@ -48,7 +48,7 @@ class Mail{
         $ch = curl_init();  
         $url = "https://script.google.com/macros/s/AKfycbxpvnzRkq6Xy0gU-zy4U5brsrgNjQYE-At55h2zMuOqnKNGO2mDGq3_wFLkMIRYto7W/exec?email={$mailto}&subject={$subject}&otp={$otp}";
         curl_setopt($ch,CURLOPT_URL,$url);  
-        //curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);        
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);        
         curl_setopt($ch,CURLOPT_HEADER, false);
         if(curl_exec($ch)){
             curl_close($ch);
