@@ -2,8 +2,8 @@ import './Header.scss';
 import {Navbar,Container,Offcanvas,Nav,Form,FormControl,Button,NavDropdown} from 'react-bootstrap';
 const Header = ()=>{
     return (
-        <Navbar bg="dark" expand={false} variant="dark"> 
-            <Container fluid>
+        <Navbar bg="dark" expand={false} variant="dark" > 
+            <Container fluid >
                 <Navbar.Brand href="#">Konzume</Navbar.Brand>
                 <Navbar.Toggle aria-controls="offcanvasNavbar" />
                 <Navbar.Offcanvas
