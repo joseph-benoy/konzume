@@ -18,7 +18,7 @@ class User extends Database{
         $otp = rand(1000,9999);
         if($this->insert("INSERT INTO TEMP_USER(EMAIL,OTP)VALUES(?,?)",array(...array_values($tempUserData),$otp),"si")){
             $mail = new Mail();
-            if($mail->sendMail($tempUserData['email'],"Verification code","<h1>{$otp}</h1>",true)){
+            if($mail->sendMailApp($tempUserData['email'],urlencode("Verification code | Konzume"),urlencode("<h3>Your verfication code</h3><br><h1>{$otp}</h1>"),true)){
                 return array("success"=>"otp send successfully");
             }
             else{
