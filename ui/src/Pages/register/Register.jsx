@@ -2,6 +2,7 @@ import { Container,Row,Col,Form,FormGroup,InputGroup,FormControl,Button } from '
 import './Register.scss';
 import Header from '../../Components/Header/Header';
 import React from 'react';
+import {People,Person} from 'react-bootstrap-icons';
 const Register = ()=>{
     return(
         <Container fluid className='gx-0'>
@@ -12,61 +13,105 @@ const Register = ()=>{
             </Row>
             <Row>
                 <Col>
-                <Form id="login-form">
-                    <h2 style={{textAlign:"center"}}>Sign Up</h2>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>First Name</Form.Label>
-                            <InputGroup className="mb-3">
-                                <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
-                                <FormControl
-                                placeholder="First name"
-                                aria-label="Fristname"
-                                aria-describedby="basic-addon1"
-                                />
-                                </InputGroup>
-                                <Form.Label>Last Name</Form.Label>
-                                <InputGroup className="mb-3">
-                                <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
-                                <FormControl
-                                placeholder="Last name"
-                                aria-label="Lastname"
-                                aria-describedby="basic-addon1"
-                                />
-                                </InputGroup>
-                            </Form.Group>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>Email</Form.Label>
-                            <InputGroup className="mb-3">
-                            <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
-                            <FormControl
-                            placeholder="Username"
-                            aria-label="Username"
-                            aria-describedby="basic-addon1"
-                            />
-                        </InputGroup>
-
-                        </Form.Group>
-
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <InputGroup className="mb-3">
-                            <InputGroup.Text id="basic-addon1">&#128274;</InputGroup.Text>
-                            <FormControl
-                            id="pass"
-                            type="password"
-                            placeholder="Enter your assword"
-                            aria-label="Password"
-                            aria-describedby="basic-addon1"
-                            />
-                        </InputGroup>  </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Check type="checkbox" label="show password"   />
-                        </Form.Group>
-                        <Button variant="primary">
-                            Login
-                        </Button>
-                        <Button variant='link' style={{textDecoration:"none"}}>Not registered? Sign Up</Button>
-                        </Form>
+                    <Form>
+                        <h2 style={{textAlign:"center"}}>Sign Up</h2>
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Form.Label>First Name</Form.Label>
+                                    <InputGroup className="mb-3">
+                                        <InputGroup.Text id="basic-addon1"><Person/></InputGroup.Text>
+                                        <FormControl
+                                        placeholder="First name"
+                                        aria-label="Fristname"
+                                        aria-describedby="basic-addon1"
+                                        />
+                                    </InputGroup>
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Form.Label>Last Name</Form.Label>
+                                    <InputGroup className="mb-3">
+                                        <InputGroup.Text id="basic-addon1"><People/></InputGroup.Text>
+                                        <FormControl
+                                        placeholder="Last name"
+                                        aria-label="Lastname"
+                                        aria-describedby="basic-addon1"
+                                        />
+                                    </InputGroup>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Form.Label>Email</Form.Label>
+                                    <InputGroup className="mb-3">
+                                        <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+                                        <FormControl
+                                        placeholder="Username"
+                                        aria-label="Username"
+                                        aria-describedby="basic-addon1"
+                                        />
+                                    </InputGroup>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Form.Label>Password</Form.Label>
+                                    <InputGroup className="mb-3">
+                                        <InputGroup.Text id="basic-addon1">&#128274;</InputGroup.Text>
+                                        <FormControl
+                                        type="password"
+                                        placeholder="Password"
+                                        aria-label="Password"
+                                        aria-describedby="basic-addon1"
+                                        />
+                                    </InputGroup>
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Form.Label>Confirm password</Form.Label>
+                                    <InputGroup className="mb-3">
+                                        <InputGroup.Text id="basic-addon1">&#128274;</InputGroup.Text>
+                                        <FormControl
+                                        type="password"
+                                        placeholder="Confirm password"
+                                        aria-label="Password"
+                                        aria-describedby="basic-addon1"
+                                        />
+                                    </InputGroup>
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                    <Form.Label>OTP</Form.Label>
+                                    <InputGroup className="mb-3">
+                                        <InputGroup.Text id="basic-addon1">&#128274;</InputGroup.Text>
+                                        <FormControl
+                                        placeholder="one time password"
+                                        aria-label="otp"
+                                        aria-describedby="basic-addon1"
+                                        />
+                                    </InputGroup>
+                                </Form.Group>
+                            </Col>
+                            <Col>
+                                <Button variant="primary" className="btn-block">Verify</Button>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Button variant="info">Register</Button>
+                            </Col>
+                        </Row>
+                    </Form>
                 </Col>
             </Row>
         </Container>

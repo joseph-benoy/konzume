@@ -44,7 +44,6 @@ class Mail{
         }
     }
     public function sendMailApp($mailto,$subject,$otp){
-        //https://script.google.com/macros/s/AKfycbxpvnzRkq6Xy0gU-zy4U5brsrgNjQYE-At55h2zMuOqnKNGO2mDGq3_wFLkMIRYto7W/exec
         $ch = curl_init();  
         $url = "https://script.google.com/macros/s/AKfycbxpvnzRkq6Xy0gU-zy4U5brsrgNjQYE-At55h2zMuOqnKNGO2mDGq3_wFLkMIRYto7W/exec?email={$mailto}&subject={$subject}&otp={$otp}";
         curl_setopt($ch,CURLOPT_URL,$url);  
