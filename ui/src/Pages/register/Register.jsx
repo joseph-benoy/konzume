@@ -1,4 +1,4 @@
-import { Container,Row,Col,Form,FormGroup,InputGroup,FormControl,Button } from 'react-bootstrap';
+import { Container,Row,Col,Form,InputGroup,FormControl,Button } from 'react-bootstrap';
 import './Register.scss';
 import Header from '../../Components/Header/Header';
 import React from 'react';
@@ -13,7 +13,7 @@ const Register = ()=>{
             </Row>
             <Row>
                 <Col>
-                    <Form>
+                    <Form className="register-form">
                         <h2 style={{textAlign:"center"}}>Sign Up</h2>
                         <Row>
                             <Col>
@@ -33,11 +33,11 @@ const Register = ()=>{
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>Last Name</Form.Label>
                                     <InputGroup className="mb-3">
-                                        <InputGroup.Text id="basic-addon1"><People/></InputGroup.Text>
+                                        <InputGroup.Text id="basic-addon2"><People/></InputGroup.Text>
                                         <FormControl
                                         placeholder="Last name"
                                         aria-label="Lastname"
-                                        aria-describedby="basic-addon1"
+                                        aria-describedby="basic-addon2"
                                         />
                                     </InputGroup>
                                 </Form.Group>
@@ -48,11 +48,11 @@ const Register = ()=>{
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>Email</Form.Label>
                                     <InputGroup className="mb-3">
-                                        <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+                                        <InputGroup.Text id="basic-addon3">@</InputGroup.Text>
                                         <FormControl
                                         placeholder="Username"
                                         aria-label="Username"
-                                        aria-describedby="basic-addon1"
+                                        aria-describedby="basic-addon3"
                                         />
                                     </InputGroup>
                                 </Form.Group>
@@ -104,16 +104,16 @@ const Register = ()=>{
                             </Col>
                             <Col>
                                 <div className="d-grid gap-2">
-                                    <Button variant="primary" >
+                                    <Button variant="primary" id="otp-btn">
                                         Verify
                                     </Button>
                                 </div>
                             </Col>
                         </Row>
                         <Row>
-                            <Col>
+                            <Col lg={8}>
                                 <div className="d-grid gap-2">
-                                    <Button variant="primary" disabled>
+                                    <Button variant="primary" disabled id="register-btn">
                                         Register
                                     </Button>
                                 </div>                            
