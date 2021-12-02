@@ -19,6 +19,7 @@ const Header = ()=>{
                     <Nav.Link href="#action1">Home</Nav.Link>
                     <Nav.Link href="#action2">About</Nav.Link>
                     <Nav.Link href="#action2">Contact</Nav.Link>
+                    <Nav.Link href="#action2">Sign Up</Nav.Link>
                     <Nav.Link href="#action2">Login</Nav.Link>
                     </Nav>
                 </Offcanvas.Body>

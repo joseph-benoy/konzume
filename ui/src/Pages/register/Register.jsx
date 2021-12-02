@@ -89,7 +89,7 @@ const Register = ()=>{
                             </Col>
                         </Row>
                         <Row>
-                            <Col>
+                            <Col lg={10}>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>OTP</Form.Label>
                                     <InputGroup className="mb-3">
@@ -103,12 +103,20 @@ const Register = ()=>{
                                 </Form.Group>
                             </Col>
                             <Col>
-                                <Button variant="primary" className="btn-block">Verify</Button>
+                                <div className="d-grid gap-2">
+                                    <Button variant="primary" >
+                                        Verify
+                                    </Button>
+                                </div>
                             </Col>
                         </Row>
                         <Row>
                             <Col>
-                                <Button variant="info">Register</Button>
+                                <div className="d-grid gap-2">
+                                    <Button variant="primary" disabled>
+                                        Register
+                                    </Button>
+                                </div>                            
                             </Col>
                         </Row>
                     </Form>
