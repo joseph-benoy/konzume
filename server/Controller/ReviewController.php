@@ -50,4 +50,52 @@ class ReviewController extends BaseController{
                 $this->sendOutput(array(),$strErrorDesc);
         }
     }
+    public function upvote(){
+        $strErrorDesc = '';
+        $requestMethod = $_SERVER['REQUEST_METHOD'];
+        if(strtoupper($requestMethod)=='POST'){
+            try{
+                $reviewModel = new Review();
+                $data = json_encode($reviewModel->upvote($_POST),JSON_UNESCAPED_SLASHES);
+            }
+            catch(Error $e){
+                   $errorDesc = "Review model error!";
+                   http_response_code(500);
+            }
+        }
+        else{
+                $strErrorDesc = 'Method not supported';
+                http_response_code(422);
+        }
+        if(!$strErrorDesc){
+                $this->sendOutput(array('Content-Type: application/json'),$data);
+        }
+        else{
+                $this->sendOutput(array(),$strErrorDesc);
+        }
+    }
+    public function downvote(){
+        $strErrorDesc = '';
+        $requestMethod = $_SERVER['REQUEST_METHOD'];
+        if(strtoupper($requestMethod)=='POST'){
+            try{
+                $reviewModel = new Review();
+                $data = json_encode($reviewModel->downvote($_POST),JSON_UNESCAPED_SLASHES);
+            }
+            catch(Error $e){
+                   $errorDesc = "Review model error!";
+                   http_response_code(500);
+            }
+        }
+        else{
+                $strErrorDesc = 'Method not supported';
+                http_response_code(422);
+        }
+        if(!$strErrorDesc){
+                $this->sendOutput(array('Content-Type: application/json'),$data);
+        }
+        else{
+                $this->sendOutput(array(),$strErrorDesc);
+        }
+    }
 }
