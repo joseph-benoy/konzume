@@ -105,4 +105,29 @@
                             $this->sendOutput(array(),$strErrorDesc);
                      }
               }
+              public function saveproduct(){
+                     $strErrorDesc = '';
+                     $requestMethod = $_SERVER['REQUEST_METHOD'];
+                     $queryParams = $this->getQueryParams();
+                     if(strtoupper($requestMethod)=='GET'){
+                            try{
+                                   $productModel = new Product();
+                                   $data = json_encode($productModel->save($_POST),JSON_UNESCAPED_SLASHES);
+                            }
+                            catch(Error $e){
+                                   $errorDesc = "Product model error!";
+                                   http_response_code(500);
+                            }
+                     }
+                     else{
+                            $strErrorDesc = 'Method not supported';
+                            http_response_code(422);
+                     }
+                     if(!$strErrorDesc){
+                            $this->sendOutput(array('Content-Type: application/json'),$data);
+                     }
+                     else{
+                            $this->sendOutput(array(),$strErrorDesc);
+                     }
+              }
        }
