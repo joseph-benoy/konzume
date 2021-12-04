@@ -40,7 +40,7 @@ class Database{
                         throw New Exception("Unable to do prepared statement(bind error): ".$query);
                     }
                     if(!($statement->execute())){
-                        throw New Exception("Unable to do prepared statement(execution error): ".$query);
+                        throw New Exception($statement->error);
                     }
                 }
             }
