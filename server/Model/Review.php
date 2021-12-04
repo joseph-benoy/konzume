@@ -39,7 +39,7 @@ class Review extends Database{
         $tokenData = $this->validateUserToken();
         if($tokenData){
             $email = $tokenData->data[3];
-            if($this->update("UPDATE REVIEW SET UPS = UPS+1 WHERE ID=?")){
+            if($this->update("UPDATE REVIEW SET UPS = UPS+1 WHERE ID=?",array(intval($data['id'])),"i")){
                 return array("success"=>"upvoted");
             }
             else{
@@ -54,11 +54,11 @@ class Review extends Database{
         $tokenData = $this->validateUserToken();
         if($tokenData){
             $email = $tokenData->data[3];
-            if($this->update("UPDATE REVIEW SET UPS = UPS+1 WHERE ID=?")){
-                return array("success"=>"upvoted");
+            if($this->update("UPDATE REVIEW SET DOWNS = DOWNS+1 WHERE ID=?",array(intval($data['id'])),"i")){
+                return array("success"=>"downvoted");
             }
             else{
-                return array("error"=>"cant upvote");
+                return array("error"=>"cant downvote");
             }
         }
         else{
