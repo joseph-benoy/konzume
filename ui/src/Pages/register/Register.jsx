@@ -2,7 +2,7 @@ import { Container,Row,Col,Form,InputGroup,FormControl,Button } from 'react-boot
 import './Register.scss';
 import Header from '../../Components/Header/Header';
 import React from 'react';
-import {People,Person} from 'react-bootstrap-icons';
+import {People,Person,FileLock} from 'react-bootstrap-icons';
 const Register = ()=>{
     return(
         <Container fluid className='gx-0'>
@@ -63,7 +63,7 @@ const Register = ()=>{
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>Password</Form.Label>
                                     <InputGroup className="mb-3">
-                                        <InputGroup.Text id="basic-addon1">&#128274;</InputGroup.Text>
+                                        <InputGroup.Text id="basic-addon1"><FileLock/></InputGroup.Text>
                                         <FormControl
                                         type="password"
                                         placeholder="Password"
@@ -77,7 +77,7 @@ const Register = ()=>{
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>Confirm password</Form.Label>
                                     <InputGroup className="mb-3">
-                                        <InputGroup.Text id="basic-addon1">&#128274;</InputGroup.Text>
+                                        <InputGroup.Text id="basic-addon1"><FileLock/></InputGroup.Text>
                                         <FormControl
                                         type="password"
                                         placeholder="Confirm password"

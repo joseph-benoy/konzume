@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import axios from 'axios';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
+import { FileLock } from 'react-bootstrap-icons';
 const Login = ()=>{
     const nav = useNavigate();
     const [alertType,setAlertType] = React.useState("light");
@@ -18,7 +19,7 @@ const Login = ()=>{
             pass.setAttribute('type','text');
         }
     });
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit} = useForm();
     const [error,setError] = React.useState("");
     const onSubmit = async (data)=>{
         try{
@@ -82,7 +83,7 @@ const Login = ()=>{
                         <Form.Group className="mb-3">
                             <Form.Label>Password</Form.Label>
                             <InputGroup className="mb-3">
-                            <InputGroup.Text id="basic-addon1">&#128274;</InputGroup.Text>
+                            <InputGroup.Text id="basic-addon1"><FileLock/></InputGroup.Text>
                             <FormControl
                             required
                             id="pass"
