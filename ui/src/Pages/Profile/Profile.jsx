@@ -1,11 +1,21 @@
 import './Profile.scss';
 import { Row,Col,Form,InputGroup,FormControl,Button } from 'react-bootstrap';
 import {People,Person} from 'react-bootstrap-icons';
+import React from 'react';
 const Profile = ()=>{
+    const showPassword = React.useCallback(()=>{
+        const pass = document.getElementById('pass');
+        if(pass.getAttribute('type')==='text'){
+            pass.setAttribute('type','password');
+        }
+        else{
+            pass.setAttribute('type','text');
+        }
+    });
     return(
         <>
                 <Form className="register-form">
-                        <h2 style={{textAlign:"center"}}>Sign Up</h2>
+                        <h2 style={{textAlign:"center"}}>Profile</h2>
                         <Row>
                             <Col>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -60,9 +70,13 @@ const Profile = ()=>{
                                         placeholder="Password"
                                         aria-label="Password"
                                         aria-describedby="basic-addon1"
+                                        id="pass"
                                         />
                                     </InputGroup>
                                 </Form.Group>
+                                <Form.Group className="mb-3">
+                            <Form.Check type="checkbox" label="show password"  onClick={showPassword} />
+                        </Form.Group>
                             </Col>
                         </Row>
                         <Row>
