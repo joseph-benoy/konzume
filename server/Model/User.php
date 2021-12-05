@@ -93,7 +93,7 @@ class User extends Database{
     }
     public function verifyUser($data){
         if(count($data)!=2){
-            return array("error"=>"parameter count error");
+            return array("error"=>$data);
         }
         if(!array_key_exists("email",$data)){
             return array("error"=>"no email");
@@ -108,6 +108,7 @@ class User extends Database{
                 return array("jwt"=>$jwt);
             }
             else{
+                http_response_code(403);
                 return array("error"=>"wrong password");
             }
         }
