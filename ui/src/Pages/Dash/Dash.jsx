@@ -2,6 +2,7 @@ import DashHeader from '../../Components/DashHeader/DashHeader';
 import './Dash.scss';
 import Profile from '../Profile/Profile';
 import { Container,Row,Col,Form,InputGroup,FormControl,Button } from 'react-bootstrap';
+import Search from '../Search/Search';
 
 const Dash = ()=>{
     return (
@@ -12,7 +13,7 @@ const Dash = ()=>{
                 </Col>
             </Row>
             <Row>
-                <Profile/>
+                <Search/>
             </Row>
         </Container>
     );
