@@ -16,11 +16,11 @@ const Header = ()=>{
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <Nav className="justify-content-end flex-grow-1 pe-3">
-                    <Nav.Link href="#action1">Home</Nav.Link>
-                    <Nav.Link href="#action2">About</Nav.Link>
-                    <Nav.Link href="#action2">Contact</Nav.Link>
-                    <Nav.Link href="#action2">Sign Up</Nav.Link>
-                    <Nav.Link href="#action2">Login</Nav.Link>
+                    <Nav.Link href="/home">Home</Nav.Link>
+                    <Nav.Link href="/about">About</Nav.Link>
+                    <Nav.Link href="/contact">Contact</Nav.Link>
+                    <Nav.Link href="/signup">Sign Up</Nav.Link>
+                    <Nav.Link href="/login">Login</Nav.Link>
                     </Nav>
                 </Offcanvas.Body>
                 </Navbar.Offcanvas>

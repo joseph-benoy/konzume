@@ -9,6 +9,11 @@ const Contact = ()=>{
                     <Header/>
                 </Col>
             </Row>
+            <Row>
+                <Col>
+                    <h1>contact</h1>
+                </Col>
+            </Row>
         </Container>
     );
 }

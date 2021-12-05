@@ -5,7 +5,7 @@ const Search = ()=>{
         <Container fluid>
             <Row>
                 <Col>
-                    <h2 style={{marginBottom:"-50vh !important"}}>Search</h2>
+                    <h2>Search</h2>
                 </Col>
             </Row>
             <Row id="search-bar">
