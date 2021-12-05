@@ -1,11 +1,13 @@
 import './Login.scss';
-import { Container,Row,Col,Form,InputGroup,FormControl,Button,FormHelperText} from 'react-bootstrap';
+import { Container,Row,Col,Form,InputGroup,FormControl,Button,Alert} from 'react-bootstrap';
 import Header from '../../Components/Header/Header';
 import React from 'react';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import qs from 'qs';
+import { useNavigate } from 'react-router-dom';
 const Login = ()=>{
+    const nav = useNavigate();
     const showPassword = React.useCallback(()=>{
         const pass = document.getElementById('pass');
         if(pass.getAttribute('type')==='text'){
@@ -16,8 +18,7 @@ const Login = ()=>{
         }
     });
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const {usernameError,setUsernameError} = React.useState("");
-    const {passwordError,setPasswordError} = React.useState("");
+    const [error,setError] = React.useState("");
     const onSubmit = async (data)=>{
         try{
             const params = qs.stringify({
@@ -34,15 +35,17 @@ const Login = ()=>{
             console.log(resp.data);
         }
         catch(e){
-            let message = e.response.data;
-            if(message==="wrong password"){
-                setPasswordError("Wrong password!");
+            let message = e.response.data.error;
+            console.log(message);
+            if(message=="wrong password"){
+                setError("Wrong password!");
             }
-            else{
-                setUsernameError("User doesn't exist");
+            if(message=="username doesnot exits"){
+                setError("User doesn't exist!");
             }
         }
     }
+    
     return(
         <Container fluid className='gx-0'>
             <Row className='gx-0'>
@@ -94,13 +97,14 @@ const Login = ()=>{
                         <Button variant="primary" type="submit">
                             Login
                         </Button>
-                        <Button variant='link' style={{textDecoration:"none"}}>Not registered? Sign Up</Button>
+                        <Button variant='link' onClick={()=>nav("/signup")} style={{textDecoration:"none"}}>Not registered? Sign Up</Button>
                         </Form>
 
                 </Col>
             </Row>
             <Row>
                 <Col>
+                    <Alert id="error-alert" variant="danger">{error}</Alert>
                 </Col>
             </Row>
         </Container>

@@ -113,6 +113,7 @@ class User extends Database{
             }
         }
         else{
+                http_response_code(403);
             return array("error"=>"username doesnot exits");
         }
     }
