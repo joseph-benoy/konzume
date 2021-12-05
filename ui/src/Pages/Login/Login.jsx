@@ -8,6 +8,7 @@ import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
 const Login = ()=>{
     const nav = useNavigate();
+    const [alertType,setAlertType] = React.useState("light");
     const showPassword = React.useCallback(()=>{
         const pass = document.getElementById('pass');
         if(pass.getAttribute('type')==='text'){
@@ -43,6 +44,7 @@ const Login = ()=>{
             if(message=="username doesnot exits"){
                 setError("User doesn't exist!");
             }
+            setAlertType("danger");
         }
     }
     
@@ -104,7 +106,7 @@ const Login = ()=>{
             </Row>
             <Row>
                 <Col>
-                    <Alert id="error-alert" variant="danger">{error}</Alert>
+                    <Alert id="error-alert" variant={alertType}>{error}</Alert>
                 </Col>
             </Row>
         </Container>
