@@ -1,11 +1,12 @@
 .register-form{
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
     width: 90vw !important;
-    padding: 10vh 5vw !important;
-    padding-top: 3vw !important;
-    margin-top: 5vh !important;
+    padding: 5vh 5vw !important;
+    padding-top: 1vw !important;
+    margin-top: 1vh !important;
     margin-left: 4vw !important;
     border-radius: 15px !important;
+    padding-bottom: 1.0vw!important;
 }
 h2{
     margin-bottom: 5vh !important;
@@ -15,4 +16,13 @@ h2{
 }
 #otp-btn{
     margin-top: 3.5vh !important;
+}
+#requestBtn{
+    margin-left: 35vw !important;
+}
+#reg-alert{
+    width: 50% !important;
+    margin-top: 1% !important;
+    margin-left: 27% !important;
+    text-align: center;
 }

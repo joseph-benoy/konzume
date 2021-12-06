@@ -34,11 +34,9 @@ const Login = ()=>{
                     data:params
                 }
             );
-            console.log(resp.data);
         }
         catch(e){
             let message = e.response.data.error;
-            console.log(message);
             if(message=="wrong password"){
                 setError("Wrong password!");
             }
