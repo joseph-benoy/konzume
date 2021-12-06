@@ -1,10 +1,11 @@
-import { Container,Row,Col,Form,InputGroup,FormControl,Button,Alert } from 'react-bootstrap';
+import { Container,Row,Col,Nav,Form,InputGroup,FormControl,Button,Alert } from 'react-bootstrap';
 import './Register.scss';
 import Header from '../../Components/Header/Header';
 import React from 'react';
 import {People,Person,FileLock,ShieldLock} from 'react-bootstrap-icons';
 import qs from 'qs';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const Register = ()=>{
     const [otp,setOtp] = React.useState("");
     const [email,setEmail] = React.useState("");
@@ -15,6 +16,7 @@ const Register = ()=>{
     const [alertType,setAlertType] = React.useState("light");
     const [error,setError] = React.useState("");
     const [regStatus,setRegStatus] = React.useState(true);
+    const [loginStatus,setLogin] = React.useState(true);
     const registerUser = async ()=>{
         if(fname!==''){
             if(lname!==''){
@@ -39,6 +41,7 @@ const Register = ()=>{
                                     });
                                     setError("Your account is active now!");
                                     setAlertType("success");
+                                    setLogin(false);
                             }
                             catch(e){
                                 setError(e.response.data.error);
@@ -132,6 +135,7 @@ const Register = ()=>{
             setAlertType("danger");
         }
     }
+    const nav = useNavigate();
     return(
         <Container fluid className='gx-0'>
             <Row className='gx-0'>
@@ -276,6 +280,11 @@ const Register = ()=>{
                         <Row>
                             <Col>
                                     <Alert id="reg-alert" variant={alertType}>{error}</Alert>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Button variant="link" disabled={loginStatus} id="login-link" onClick={()=>nav("/login")}>Login to your account</Button>
                             </Col>
                         </Row>
                     </Form>
