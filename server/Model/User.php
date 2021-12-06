@@ -17,20 +17,28 @@ class User extends Database{
             http_response_code(403);
             return array("error"=>"no email");
         }
-        $otp = rand(1000,9999);
-        if($this->insert("INSERT INTO TEMP_USER(EMAIL,OTP)VALUES(?,?)",array(...array_values($tempUserData),$otp),"si")){
-            $mail = new Mail();
-            if($mail->sendMailApp($tempUserData['email'],urlencode("Verification code | Konzume"),urlencode("<h2>Your verfication code</h2><h1>{$otp}</h1>"),true)){
-                return array("success"=>"otp send successfully");
+        $flagData = $this->select("SELECT * FROM USER WHERE EMAIL=?",array_values($tempUserData),"s");
+        if($flagData==false){
+            $otp = rand(1000,9999);
+            if($this->insert("INSERT INTO TEMP_USER(EMAIL,OTP)VALUES(?,?)",array(...array_values($tempUserData),$otp),"si")){
+                $mail = new Mail();
+                if($mail->sendMailApp($tempUserData['email'],urlencode("Verification code | Konzume"),urlencode("<h2>Your verfication code</h2><h1>{$otp}</h1>"),true)){
+                    return array("success"=>"otp send successfully");
+                }
+                else{
+                    http_response_code(403);
+                    return array("error"=>"otp failed");
+                }
             }
             else{
                 http_response_code(403);
-                return array("error"=>"otp failed");
+                return array("error"=>"parameter error");
             }
         }
-        else{
-            http_response_code(403);
-            return array("error"=>"parameter error");
+        else
+        {
+              http_response_code(403);
+              return array("error"=>"User already exists");      
         }
     }
     public function verifyTempUser($data){

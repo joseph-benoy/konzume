@@ -123,7 +123,8 @@ const Register = ()=>{
                     setAlertType("success");
             }
             catch(e){
-                console.log(e.response.data.error);
+                setError("User already exists!");
+                setAlertType("danger");
             }
         }
         else{
