@@ -10,9 +10,11 @@ class User extends Database{
      */
     public function insertTempUser($tempUserData){
         if(count($tempUserData)!=1){
+            http_response_code(403);
             return array("error"=>"parameter error");
         }
         if(!array_key_exists("email",$tempUserData)){
+            http_response_code(403);
             return array("error"=>"no email");
         }
         $otp = rand(1000,9999);
@@ -22,21 +24,26 @@ class User extends Database{
                 return array("success"=>"otp send successfully");
             }
             else{
+                http_response_code(403);
                 return array("error"=>"otp failed");
             }
         }
         else{
+            http_response_code(403);
             return array("error"=>"parameter error");
         }
     }
     public function verifyTempUser($data){
         if(count($data)!=2){
+               http_response_code(403);
             return array("error"=>"parameter error");
         }
         if(!array_key_exists("email",$data)){
+               http_response_code(403);
             return array("error"=>"no email");
         }
         if(!array_key_exists("otp",$data)){
+               http_response_code(403);
             return array("error"=>"no otp");
         }
         $tempUserData = $this->select("SELECT * FROM TEMP_USER WHERE EMAIL=? AND OTP=?",array_values($data),"si");
@@ -45,10 +52,12 @@ class User extends Database{
                 return array("success"=>"verified the otp");
             }
             else{
+               http_response_code(403);
                 return array("error"=>"cant update tempuser verified");
             }
         }
         else{
+               http_response_code(403);
             return array("error"=>"wrong otp");
         }
     }

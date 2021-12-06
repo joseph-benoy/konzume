@@ -12,11 +12,41 @@ const Register = ()=>{
     const [cpassword,setCpassword] = React.useState("");
     const [fname,setFname] = React.useState("");
     const [lname,setLname] = React.useState("");
-    const otpVerificaton = ()=>{
+    const [alertType,setAlertType] = React.useState("light");
+    const [error,setError] = React.useState("");
+    const registerUser = async ()=>{
+        if()
+    }
+    const otpVerificaton = async ()=>{
+        const params = qs.stringify({
+            email:email,
+            otp:otp
+        });
         if(otp!==''){
             if(otp.length===4){
+                try{
+                    setError("Wait! otp is being verified....");
+                    setAlertType("primary");
+                    let res = await axios(
+                        {
+                            method: 'POST',
+                            headers: { 'content-type': 'application/x-www-form-urlencoded' },
+                            url: '/user/verifyotp',
+                            data:params
+                        });
+                        setError("OTP is verified! Now you can register!");
+                        setAlertType("success");
+                }
+                catch(e){
+                    setError("OTP is incorrect!");
+                    setAlertType("success");
+                }
 
             }
+        }
+        else{
+            setError("Invalid OTP!");
+            setAlertType("danger");
         }
     }
     const otpRequest = async ()=>{
@@ -24,19 +54,26 @@ const Register = ()=>{
             const params = qs.stringify({
                 email:`${email}`
             });
+            setError("Wait! otp is being sent....");
+            setAlertType("primary");
             try{
-                let res = axios(
+                let res = await axios(
                     {
                         method: 'POST',
                         headers: { 'content-type': 'application/x-www-form-urlencoded' },
                         url: '/user/requestotp',
                         data:params
                     });
-                    console.log(res.data);
+                    setError("OTP is sent to "+email+"!");
+                    setAlertType("success");
             }
             catch(e){
                 console.log(e.response.data.error);
             }
+        }
+        else{
+            setError("User details cannot be empty!");
+            setAlertType("danger");
         }
     }
     return(
@@ -182,7 +219,7 @@ const Register = ()=>{
                         </Row>
                         <Row>
                             <Col>
-                                    <Alert id="reg-alert" variant="danger">TEst</Alert>
+                                    <Alert id="reg-alert" variant={alertType}>{error}</Alert>
                             </Col>
                         </Row>
                     </Form>
