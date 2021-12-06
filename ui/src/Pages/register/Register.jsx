@@ -14,8 +14,62 @@ const Register = ()=>{
     const [lname,setLname] = React.useState("");
     const [alertType,setAlertType] = React.useState("light");
     const [error,setError] = React.useState("");
+    const [regStatus,setRegStatus] = React.useState(true);
     const registerUser = async ()=>{
-        if()
+        if(fname!==''){
+            if(lname!==''){
+                if(email!==''){
+                    if(password!==''&&cpassword!==''){
+                        if(password===cpassword){
+                            let params = qs.stringify({
+                                fname:fname,
+                                lname:lname,
+                                email:email,
+                                password:password
+                            });
+                            try{
+                                setError("Wait! Registering your account....");
+                                setAlertType("primary");
+                                let res = await axios(
+                                    {
+                                        method: 'POST',
+                                        headers: { 'content-type': 'application/x-www-form-urlencoded' },
+                                        url: '/user/createuser',
+                                        data:params
+                                    });
+                                    setError("Your account is active now!");
+                                    setAlertType("success");
+                            }
+                            catch(e){
+                                setError(e.response.data.error);
+                                setAlertType("danger");
+                            }
+                        }
+                        else{
+                            setError("Passwords don't match");
+                            setAlertType("danger");
+                        }
+                    }
+                    else{
+                        setError("Passwords can't be empty!");
+                        setAlertType("danger");
+                    }
+                    
+                }
+                else{
+                    setError("Email can't be empty!");
+                    setAlertType("danger");
+                }
+            }
+            else{
+                setError("Last name can't be empty!");
+                setAlertType("danger");
+            }
+        }
+        else{
+            setError("First name can't be empty!");
+            setAlertType("danger");
+        }
     }
     const otpVerificaton = async ()=>{
         const params = qs.stringify({
@@ -36,6 +90,7 @@ const Register = ()=>{
                         });
                         setError("OTP is verified! Now you can register!");
                         setAlertType("success");
+                        setRegStatus(false);
                 }
                 catch(e){
                     setError("OTP is incorrect!");
@@ -211,7 +266,7 @@ const Register = ()=>{
                         <Row>
                             <Col lg={8}>
                                 <div className="d-grid gap-2">
-                                    <Button variant="primary" disabled id="register-btn">
+                                    <Button onClick={registerUser} variant="primary" disabled={regStatus} id="register-btn">
                                         Register
                                     </Button>
                                 </div>                            
