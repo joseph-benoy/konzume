@@ -10,9 +10,9 @@ const DashHeader = ()=>{
             <Container>
                 <Navbar.Brand href="#home">Konzume</Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link onClick={()=>{nav("/dashboard/search");}} className="nav-links"><Search/></Nav.Link>
-                    <Nav.Link onClick={()=>{nav("/dashboard/profile");}}><PersonBadge/></Nav.Link>
-                    <Nav.Link onClick={()=>{nav("/login");sessionStorage.removeItem("jwt")}}><DoorOpen/></Nav.Link>
+                    <Nav.Link onClick={()=>{nav("/dashboard/search");}} className="nav-links">Search</Nav.Link>
+                    <Nav.Link onClick={()=>{nav("/dashboard/profile");}}>Profile</Nav.Link>
+                    <Nav.Link onClick={()=>{nav("/login");sessionStorage.removeItem("jwt")}}>Logout</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>
