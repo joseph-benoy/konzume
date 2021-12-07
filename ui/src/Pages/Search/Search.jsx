@@ -13,7 +13,7 @@ const Search = ()=>{
                     <Form.Control size="large" type="text" placeholder="Search the product name"/>
                 </Col>
                 <Col lg={1}>
-                    <Button>Search</Button>
+                    <Button variant="dark">Search</Button>
                 </Col>
             </Row>
             <Row>

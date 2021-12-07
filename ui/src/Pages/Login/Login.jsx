@@ -99,7 +99,7 @@ const Login = ()=>{
 
                         </InputGroup>
                       </Form.Group>
-                        <Button variant="primary" type="submit">
+                        <Button variant="dark" type="submit">
                             Login
                         </Button>
                         <Button variant='link' onClick={()=>nav("/signup")} style={{textDecoration:"none"}}>Not registered? Sign Up</Button>

@@ -170,7 +170,7 @@ const Profile = ()=>{
                         <Row>
                             <Col lg={8}>
                                 <div className="d-grid gap-2">
-                                    <Button variant="primary" id="update-btn" onClick={updateUser}>
+                                    <Button variant="dark" id="update-btn" onClick={updateUser}>
                                         Save
                                     </Button>
                                 </div>                            
