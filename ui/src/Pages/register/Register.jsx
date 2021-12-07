@@ -149,14 +149,13 @@ const Register = ()=>{
                         <h2 style={{textAlign:"center"}}>Sign Up</h2>
                         <Row>
                             <Col>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                <Form.Group className="mb-3">
                                     <Form.Label>First Name</Form.Label>
                                     <InputGroup className="mb-3">
-                                        <InputGroup.Text id="basic-addon1"><Person/></InputGroup.Text>
+                                        <InputGroup.Text><People/></InputGroup.Text>
                                         <FormControl
                                         placeholder="First name"
-                                        aria-label="Fristname"
-                                        aria-describedby="basic-addon1"
+                                        aria-label="Firstname"
                                         onChange = {(e)=>{
                                             setFname(e.target.value);
                                         }}
