@@ -14,7 +14,7 @@ const Profile = ()=>{
     });
     return(
         <>
-                <Form className="register-form">
+                <Form id="profile-form">
                         <h2 style={{textAlign:"center"}}>Profile</h2>
                         <Row>
                             <Col>
@@ -82,7 +82,7 @@ const Profile = ()=>{
                         <Row>
                             <Col lg={8}>
                                 <div className="d-grid gap-2">
-                                    <Button variant="primary" disabled id="register-btn">
+                                    <Button variant="primary" disabled id="update-btn">
                                         Save
                                     </Button>
                                 </div>                            

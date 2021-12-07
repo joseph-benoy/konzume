@@ -3,6 +3,7 @@ import './Dash.scss';
 import Profile from '../Profile/Profile';
 import { Container,Row,Col,Form,InputGroup,FormControl,Button } from 'react-bootstrap';
 import Search from '../Search/Search';
+import {Route,Routes} from 'react-router-dom';
 
 const Dash = ()=>{
     return (
@@ -13,7 +14,12 @@ const Dash = ()=>{
                 </Col>
             </Row>
             <Row>
-                <Search/>
+                <Col>
+                <Routes>
+                    <Route exact path="/search" element={<Search/>}></Route>
+                    <Route exact path="/profile" element={<Profile/>}></Route>
+                </Routes>
+                </Col>
             </Row>
         </Container>
     );

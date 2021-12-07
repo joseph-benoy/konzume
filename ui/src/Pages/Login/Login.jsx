@@ -38,7 +38,7 @@ const Login = ()=>{
                 }
             );
             sessionStorage.setItem("jwt",resp.data.jwt);
-            nav("/dashboard");
+            nav("/dashboard/search");
         }
         catch(e){
             let message = e.response.data.error;
