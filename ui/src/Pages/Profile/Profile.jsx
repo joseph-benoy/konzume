@@ -30,9 +30,9 @@ const Profile = ()=>{
         });
         setFname(resp.data.user[0]['FNAME']);
         setLname(resp.data.user[0]['LNAME']);
-        setId(resp.data.user[0]['EMAIL']);
-        setEmail(resp.data.user[0]['PASSWORD']);
-        setPassword(resp.data.user[0]['ID']);
+        setEmail(resp.data.user[0]['EMAIL']);
+        setPassword(resp.data.user[0]['PASSWORD']);
+        setId(resp.data.user[0]['ID']);
     },[]);
     return(
         <>
@@ -48,6 +48,7 @@ const Profile = ()=>{
                                         placeholder="First name"
                                         aria-label="Fristname"
                                         aria-describedby="basic-addon1"
+                                        value={fname}
                                         />
                                     </InputGroup>
                                 </Form.Group>
@@ -61,6 +62,7 @@ const Profile = ()=>{
                                         placeholder="Last name"
                                         aria-label="Lastname"
                                         aria-describedby="basic-addon2"
+                                        value={lname}
                                         />
                                     </InputGroup>
                                 </Form.Group>
@@ -76,6 +78,7 @@ const Profile = ()=>{
                                         placeholder="Username"
                                         aria-label="Username"
                                         aria-describedby="basic-addon3"
+                                        value={email}
                                         />
                                     </InputGroup>
                                 </Form.Group>
@@ -92,6 +95,7 @@ const Profile = ()=>{
                                         placeholder="Password"
                                         aria-label="Password"
                                         aria-describedby="basic-addon1"
+                                        value={password}
                                         id="pass"
                                         />
                                     </InputGroup>
