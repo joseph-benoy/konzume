@@ -1,8 +1,9 @@
 import './Profile.scss';
-import { Row,Col,Form,InputGroup,FormControl,Button } from 'react-bootstrap';
+import { Row,Col,Form,InputGroup,FormControl,Button,Alert } from 'react-bootstrap';
 import {People,Person,Eye,EyeSlash,FileLock} from 'react-bootstrap-icons';
 import React from 'react';
 import axios from 'axios';
+import qs from 'qs';
 const Profile = ()=>{
     const [eyeType,setEye] = React.useState("Eye");
     const showPassword = React.useCallback(()=>{
@@ -22,7 +23,7 @@ const Profile = ()=>{
     const [email,setEmail] = React.useState("");
     const [password,setPassword] = React.useState("");
     const [error,setError] = React.useState("");
-    const [alertType,setAlert] = React.useState("danger");
+    const [alertType,setAlert] = React.useState("light");
     React.useEffect(async ()=>{
         const resp = await axios({
             method: 'POST',
@@ -37,6 +38,54 @@ const Profile = ()=>{
         setPassword(resp.data.user[0]['PASSWORD']);
         setId(resp.data.user[0]['ID']);
     },[]);
+    const updateUser = React.useCallback(async ()=>{
+        if(fname!==""){
+            if(lname!==""){
+                if(email!==""){
+                    if(password.length>3){
+                        try{
+                            const params = qs.stringify({
+                                fname:fname,
+                                lname:lname,
+                                email:email,
+                                password:password
+                            });
+                            const res = await axios({
+                                method: 'POST',
+                                headers: { 'content-type': 'application/x-www-form-urlencoded',
+                                    'Authorization':`Bearer ${sessionStorage.getItem("jwt")}`
+                                },
+                                url: '/user/updateuser',
+                                data:params
+                            });
+                            setError("Updated user data!");
+                            setAlert("success");
+                        }
+                        catch(e){
+                            setError(e.response.data.error);
+                            setAlert("danger");
+                        }
+                    }
+                    else{
+                        setError("Password is too short!");
+                        setAlert("danger");
+                    }
+                }
+                else{
+                    setError("Email can't be empty!");
+                    setAlert("danger");
+                }
+            }
+            else{
+                setError("Last name can't be empty!");
+                setAlert("danger");
+            }
+        }
+        else{
+            setError("First name can't be empty!");
+            setAlert("danger");
+        }
+    });
     return(
         <>
                 <Form id="profile-form">
@@ -52,6 +101,9 @@ const Profile = ()=>{
                                         aria-label="Fristname"
                                         aria-describedby="basic-addon1"
                                         value={fname}
+                                        onChange={(e)=>{
+                                            setFname(e.target.value);
+                                        }}
                                         />
                                     </InputGroup>
                                 </Form.Group>
@@ -66,6 +118,9 @@ const Profile = ()=>{
                                         aria-label="Lastname"
                                         aria-describedby="basic-addon2"
                                         value={lname}
+                                        onChange={(e)=>{
+                                            setLname(e.target.value);
+                                        }}
                                         />
                                     </InputGroup>
                                 </Form.Group>
@@ -82,6 +137,9 @@ const Profile = ()=>{
                                         aria-label="Username"
                                         aria-describedby="basic-addon3"
                                         value={email}
+                                        onChange={(e)=>{
+                                            setEmail(e.target.value);
+                                        }}
                                         />
                                     </InputGroup>
                                 </Form.Group>
@@ -100,6 +158,9 @@ const Profile = ()=>{
                                         aria-describedby="basic-addon1"
                                         value={password}
                                         id="pass"
+                                        onChange={(e)=>{
+                                            setPassword(e.target.value);
+                                        }}
                                         />
                                         <InputGroup.Text>{(eyeType==='Eye')?<Eye onClick={showPassword}/>:<EyeSlash onClick={showPassword}/>}</InputGroup.Text>
                                     </InputGroup>
@@ -109,13 +170,18 @@ const Profile = ()=>{
                         <Row>
                             <Col lg={8}>
                                 <div className="d-grid gap-2">
-                                    <Button variant="primary" disabled id="update-btn">
+                                    <Button variant="primary" id="update-btn" onClick={updateUser}>
                                         Save
                                     </Button>
                                 </div>                            
                             </Col>
                         </Row>
                     </Form>
+                    <Row>
+                        <Col>
+                            <Alert id="error-alert" variant={alertType}>{error}</Alert>
+                        </Col>
+                    </Row>
                     </>
     );
 }

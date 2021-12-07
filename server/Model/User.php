@@ -138,18 +138,23 @@ class User extends Database{
         $tokenData = $this->validateUserToken();
         if($tokenData){
             if(count($data)!=4){
+                        http_response_code(403);
                 return array("error"=>"parameter count error");
             }
             if(!array_key_exists("email",$data)){
+                        http_response_code(403);
                 return array("error"=>"no email");
             }
             if(!array_key_exists("fname",$data)){
+                        http_response_code(403);
                 return array("error"=>"no fname");
             }    
             if(!array_key_exists("lname",$data)){
+                        http_response_code(403);
                 return array("error"=>"no lname");
             } 
             if(!array_key_exists("password",$data)){
+                        http_response_code(403);
                 return array("error"=>"no password");
             } 
             $updateStatus = $this->update("UPDATE USER SET FNAME=?,LNAME=?,EMAIL=?,PASS=AES_ENCRYPT(?,?) WHERE EMAIL=?",array($data['fname'],$data['lname'],$data['email'],$data['password'],DB_ENC_KEY,$tokenData->data[3]),"ssssss");
@@ -157,10 +162,12 @@ class User extends Database{
                 return array("success"=>$updateStatus);
             }
             else{
+                        http_response_code(403);
                 return array("error"=>"failed to update user");
             }
         }
         else{
+                    http_response_code(403);
             return array("error"=>"access denied");
         }
     }
