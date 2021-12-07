@@ -37,6 +37,8 @@ const Login = ()=>{
                     data:params
                 }
             );
+            sessionStorage.setItem("jwt",resp.data.jwt);
+            nav("/dashboard");
         }
         catch(e){
             let message = e.response.data.error;
@@ -97,9 +99,6 @@ const Login = ()=>{
 
                         </InputGroup>
                       </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Check type="checkbox" label="show password"  onClick={showPassword} />
-                        </Form.Group>
                         <Button variant="primary" type="submit">
                             Login
                         </Button>

@@ -16,6 +16,7 @@ const Konzume = ()=>{
                 <Route exact path="/contact" element={<Contact/>}></Route>
                 <Route exact path="/login" element={<Login/>}></Route>
                 <Route exact path="/signup" element={<Register/>}></Route>
+                <Route exact path="/dashboard" element={<Dash/>}></Route>
             </Routes>
         </Router>
     );
