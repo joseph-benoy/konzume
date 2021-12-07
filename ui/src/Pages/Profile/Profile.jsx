@@ -2,6 +2,7 @@ import './Profile.scss';
 import { Row,Col,Form,InputGroup,FormControl,Button } from 'react-bootstrap';
 import {People,Person} from 'react-bootstrap-icons';
 import React from 'react';
+import axios from 'axios';
 const Profile = ()=>{
     const showPassword = React.useCallback(()=>{
         const pass = document.getElementById('pass');
@@ -12,13 +13,35 @@ const Profile = ()=>{
             pass.setAttribute('type','text');
         }
     });
+    const [id,setId] = React.useState("");
+    const [fname,setFname] = React.useState("");
+    const [lname,setLname] = React.useState("");
+    const [email,setEmail] = React.useState("");
+    const [password,setPassword] = React.useState("");
+    const [error,setError] = React.useState("");
+    const [alertType,setAlert] = React.useState("danger");
+    React.useEffect(async ()=>{
+        const resp = await axios({
+            method: 'POST',
+            headers: { 'content-type': 'application/x-www-form-urlencoded',
+                'Authorization':`Bearer ${sessionStorage.getItem("jwt")}`
+            },
+            url: '/user/fetch',
+        });
+        setFname(resp.data.user[0]['FNAME']);
+        setLname(resp.data.user[0]['LNAME']);
+        setId(resp.data.user[0]['EMAIL']);
+        setEmail(resp.data.user[0]['PASSWORD']);
+        setPassword(resp.data.user[0]['ID']);
+
+    });
     return(
         <>
                 <Form id="profile-form">
                         <h2 style={{textAlign:"center"}}>Profile</h2>
                         <Row>
                             <Col>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                <Form.Group className="mb-3" >
                                     <Form.Label>First Name</Form.Label>
                                     <InputGroup className="mb-3">
                                         <InputGroup.Text id="basic-addon1"><Person/></InputGroup.Text>
@@ -31,7 +54,7 @@ const Profile = ()=>{
                                 </Form.Group>
                             </Col>
                             <Col>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                <Form.Group className="mb-3" >
                                     <Form.Label>Last Name</Form.Label>
                                     <InputGroup className="mb-3">
                                         <InputGroup.Text id="basic-addon2"><People/></InputGroup.Text>
@@ -46,7 +69,7 @@ const Profile = ()=>{
                         </Row>
                         <Row>
                             <Col>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                <Form.Group className="mb-3" >
                                     <Form.Label>Email</Form.Label>
                                     <InputGroup className="mb-3">
                                         <InputGroup.Text id="basic-addon3">@</InputGroup.Text>
@@ -61,7 +84,7 @@ const Profile = ()=>{
                         </Row>
                         <Row>
                             <Col>
-                                <Form.Group className="mb-3" controlId="formBasicEmail">
+                                <Form.Group className="mb-3" >
                                     <Form.Label>Password</Form.Label>
                                     <InputGroup className="mb-3">
                                         <InputGroup.Text id="basic-addon1">&#128274;</InputGroup.Text>
