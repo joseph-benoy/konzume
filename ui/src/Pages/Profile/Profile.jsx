@@ -33,8 +33,7 @@ const Profile = ()=>{
         setId(resp.data.user[0]['EMAIL']);
         setEmail(resp.data.user[0]['PASSWORD']);
         setPassword(resp.data.user[0]['ID']);
-
-    });
+    },[]);
     return(
         <>
                 <Form id="profile-form">
