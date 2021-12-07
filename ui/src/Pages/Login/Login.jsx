@@ -6,17 +6,20 @@ import { useForm } from "react-hook-form";
 import axios from 'axios';
 import qs from 'qs';
 import { useNavigate } from 'react-router-dom';
-import { FileLock } from 'react-bootstrap-icons';
+import { FileLock,Eye,EyeSlash } from 'react-bootstrap-icons';
 const Login = ()=>{
     const nav = useNavigate();
     const [alertType,setAlertType] = React.useState("light");
+    const [eyeType,setEye] = React.useState("Eye");
     const showPassword = React.useCallback(()=>{
         const pass = document.getElementById('pass');
         if(pass.getAttribute('type')==='text'){
             pass.setAttribute('type','password');
+            setEye("Eye");
         }
         else{
             pass.setAttribute('type','text');
+            setEye("EyeSlash");
         }
     });
     const { register, handleSubmit} = useForm();
@@ -46,7 +49,6 @@ const Login = ()=>{
             setAlertType("danger");
         }
     }
-    
     return(
         <Container fluid className='gx-0'>
             <Row className='gx-0'>
@@ -91,7 +93,10 @@ const Login = ()=>{
                             aria-describedby="basic-addon1"
                             {...register("password")}
                             />
-                        </InputGroup>  </Form.Group>
+                            <InputGroup.Text>{(eyeType==='Eye')?<Eye onClick={showPassword}/>:<EyeSlash onClick={showPassword}/>}</InputGroup.Text>
+
+                        </InputGroup>
+                      </Form.Group>
                         <Form.Group className="mb-3">
                             <Form.Check type="checkbox" label="show password"  onClick={showPassword} />
                         </Form.Group>
