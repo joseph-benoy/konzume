@@ -1,16 +1,19 @@
 import './Profile.scss';
 import { Row,Col,Form,InputGroup,FormControl,Button } from 'react-bootstrap';
-import {People,Person} from 'react-bootstrap-icons';
+import {People,Person,Eye,EyeSlash,FileLock} from 'react-bootstrap-icons';
 import React from 'react';
 import axios from 'axios';
 const Profile = ()=>{
+    const [eyeType,setEye] = React.useState("Eye");
     const showPassword = React.useCallback(()=>{
         const pass = document.getElementById('pass');
         if(pass.getAttribute('type')==='text'){
             pass.setAttribute('type','password');
+            setEye("Eye");
         }
         else{
             pass.setAttribute('type','text');
+            setEye("EyeSlash");
         }
     });
     const [id,setId] = React.useState("");
@@ -89,7 +92,7 @@ const Profile = ()=>{
                                 <Form.Group className="mb-3" >
                                     <Form.Label>Password</Form.Label>
                                     <InputGroup className="mb-3">
-                                        <InputGroup.Text id="basic-addon1">&#128274;</InputGroup.Text>
+                                        <InputGroup.Text id="basic-addon1"><FileLock/></InputGroup.Text>
                                         <FormControl
                                         type="password"
                                         placeholder="Password"
@@ -98,11 +101,9 @@ const Profile = ()=>{
                                         value={password}
                                         id="pass"
                                         />
+                                        <InputGroup.Text>{(eyeType==='Eye')?<Eye onClick={showPassword}/>:<EyeSlash onClick={showPassword}/>}</InputGroup.Text>
                                     </InputGroup>
                                 </Form.Group>
-                                <Form.Group className="mb-3">
-                            <Form.Check type="checkbox" label="show password"  onClick={showPassword} />
-                        </Form.Group>
                             </Col>
                         </Row>
                         <Row>
