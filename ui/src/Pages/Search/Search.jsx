@@ -10,7 +10,7 @@ const Search = ()=>{
             </Row>
             <Row id="search-bar">
                 <Col lg={11}>
-                    <Form.Control size="large" type="text" placeholder="Search the product name"/>
+                    <Form.Control type="search" size="large" type="text" placeholder="Search the product name"/>
                 </Col>
                 <Col lg={1}>
                     <Button variant="dark">Search</Button>
