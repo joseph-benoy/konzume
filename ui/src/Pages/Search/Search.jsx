@@ -2,13 +2,13 @@ import { Col, Container, Form, Row,Button,Alert } from 'react-bootstrap';
 import './Search.scss';
 import React from 'react';
 import axios from 'axios';
-import ProductView from './productView/productView';
+import { PencilSquare } from 'react-bootstrap-icons';
 const Search = ()=>{
     const [search,setSearch] = React.useState("");
     const [error,setError] = React.useState("");
     const [purl,setPurl] = React.useState("");
     const [alertType,setAlert] = React.useState("light");
-
+    const [krev,setKrev] = React.useState("No reviews from Konzume users...");
 
 
     const [url,setUrl] = React.useState("");
@@ -124,6 +124,20 @@ const Search = ()=>{
                                     <li>{rev.replaceAll("<br/>"," ")}</li>
                                 ))}
                             </ul>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Your review</Form.Label>
+                                <Form.Control as="textarea" rows={3} placeholder='enter your honest views of the product here'/>
+                            </Form.Group>
+                            <Button variant="dark" id="postBtn"><PencilSquare/>Post</Button>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                                    {krev}
                         </Col>
                     </Row>
                 </Col>
