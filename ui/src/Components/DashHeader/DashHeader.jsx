@@ -6,7 +6,7 @@ const DashHeader = ()=>{
     const nav = useNavigate();
     return (
         <>
-        <Navbar bg="dark" variant="dark">
+        <Navbar bg="dark" variant="dark" style={{position:"sticky !important",top:"0 !important"}}>
             <Container>
                 <Navbar.Brand href="#home">Konzume</Navbar.Brand>
                 <Nav className="me-auto">

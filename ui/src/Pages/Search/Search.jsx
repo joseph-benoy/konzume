@@ -18,8 +18,7 @@ const Search = ()=>{
     const [price,setPrice] = React.useState("");
     const [reviews,setReviews] = React.useState([]);
     const [about,setAbout] = React.useState([]);
-
-
+    const [flipReview,setFlip] = React.useState("");
     const submitSearch = async()=>{
         if(search!=''){
             try{
@@ -33,6 +32,25 @@ const Search = ()=>{
                     },
                     timeout:50000
                 });
+                try{
+                    const flip = await axios({
+                        method: 'GET',
+                        url: '/product/getflipkart',
+                        params:{
+                            p:search
+                        },
+                        timeout:50000
+                    });
+                    if(flip.data.productRating!==""){
+                        setFlip(flip.data.productRating);
+                    }
+                    else{
+                        setFlip("Nill");
+                    }
+                }
+                catch(e){
+                    setFlip("Nill");
+                }
                 setUrl(res.data.productUrl);
                 setTitle(res.data.productTitle);
                 setAbout(res.data.productAbout);
@@ -75,6 +93,11 @@ const Search = ()=>{
                 </Col>
             </Row>
             <Row>
+                <Col>
+                    <Alert variant={alertType} id="search-alert">{error}</Alert>
+                </Col>
+            </Row>
+            <Row>
                 <Col lg={5} id="search-image">
                     <img src="search-image.png" alt="search-image" id="search-image" fluid/>
                 </Col>
@@ -87,7 +110,7 @@ const Search = ()=>{
                             <h5>Ratings</h5>
                             <ul>
                                 <li>Amazon : {rating}</li>
-                                <li>Flipkart : {rating}</li>
+                                <li>Flipkart : {flipReview}</li>
                             </ul>
                             <h5>About</h5>
                             <ul>
@@ -95,7 +118,7 @@ const Search = ()=>{
                                     <li>{feature}</li>
                                 ))}
                             </ul>
-                            <h5>Reviews from web</h5>
+                            <h5>Top reviews from web</h5>
                             <ul>
                                 {reviews.map((rev)=>(
                                     <li>{rev.replaceAll("<br/>"," ")}</li>
@@ -103,11 +126,6 @@ const Search = ()=>{
                             </ul>
                         </Col>
                     </Row>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <Alert variant={alertType} id="search-alert">{error}</Alert>
                 </Col>
             </Row>
         </Container>
