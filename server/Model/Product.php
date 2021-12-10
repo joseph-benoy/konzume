@@ -4,7 +4,7 @@ require_once "Database.php";
               public function getProductSummary($productName){
                      return (new Amazon())->getProductSummary($productName);
               }
-              public function getProductDetail($productUrl,$website){
+              public function getProductDetail($productUrl,$website="amazon"){
                      if($website=="amazon"){
                             return (new Amazon())->getProductDetails($productUrl);
                      }

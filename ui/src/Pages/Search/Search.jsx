@@ -2,14 +2,24 @@ import { Col, Container, Form, Row,Button,Alert } from 'react-bootstrap';
 import './Search.scss';
 import React from 'react';
 import axios from 'axios';
+import ProductView from './productView/productView';
 const Search = ()=>{
     const [search,setSearch] = React.useState("");
-    const [productTitle,setTitle] = React.useState("");
-    const [productUrl,setUrl] = React.useState("");
-    const [productPrice,setPrice] = React.useState("");
-    const [productImg,setImg] = React.useState("");
     const [error,setError] = React.useState("");
+    const [purl,setPurl] = React.useState("");
     const [alertType,setAlert] = React.useState("light");
+
+
+
+    const [url,setUrl] = React.useState("");
+    const [img,setImg] = React.useState("");
+    const [rating,setRating] = React.useState("");
+    const [title,setTitle] = React.useState("");
+    const [price,setPrice] = React.useState("");
+    const [reviews,setReviews] = React.useState([]);
+    const [about,setAbout] = React.useState([]);
+
+
     const submitSearch = async()=>{
         if(search!=''){
             try{
@@ -17,17 +27,19 @@ const Search = ()=>{
                 setAlert("info");
                 const res = await axios({
                     method: 'GET',
-                    url: '/product/searchproduct',
+                    url: '/product/amazonproductdetails',
                     params:{
-                        p:search
+                        purl:search
                     },
                     timeout:50000
                 });
-                console.log(res.data);
-                setTitle(res.data.productTitle);
                 setUrl(res.data.productUrl);
-                setImg(res.data.imgUrl);
-                setPrice(res.data.price);
+                setTitle(res.data.productTitle);
+                setAbout(res.data.productAbout);
+                setPrice(res.data.productPrice);
+                setImg(res.data.productImgUrl);
+                setRating(res.data.productRating);
+                setReviews(res.data.productReviews);
                 document.getElementById('search-image').style.display = "none";
                 document.getElementById('productSummary').style.display = "block";
                 setError("");
@@ -45,6 +57,8 @@ const Search = ()=>{
             setAlert("danger");
         }
     }
+
+
     return(
         <Container fluid>
             <Row>
@@ -67,14 +81,20 @@ const Search = ()=>{
                 <Col id="productSummary">
                     <Row>
                         <Col>
-                            <h4>{productTitle}</h4>
-                            <h5>{productPrice}</h5>
-                            <img src={productImg} alt='product-img' id="productImg"/>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <Button variant="dark" id="checkoutBtn">checkout</Button>
+                            <h4>{title}</h4>
+                            <h6>{price}</h6>
+                            <img src={img} alt='product-img' id="productImg"/>
+                            <h5>Ratings</h5>
+                            <ul>
+                                <li>Amazon : {rating}</li>
+                                <li>Flipkart : {rating}</li>
+                            </ul>
+                            <h5>About</h5>
+                            <ul>
+                                {about.map((feature)=>(
+                                    <li>{feature}</li>
+                                ))}
+                            </ul>
                         </Col>
                     </Row>
                 </Col>

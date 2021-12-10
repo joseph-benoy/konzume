@@ -38,8 +38,9 @@
                      }
                      return array("productUrl"=>$this->productUrl,'imgUrl'=>$value,'productTitle'=>$html->find('#productTitle',0)->innertext,"price"=>$price);
               }
-              public function getProductDetails($productUrl){
-                     $this->productUrl = $productUrl;
+              public function getProductDetails($productName){
+                     $this->productUrl = ($this->getProductSummary($productName))["productUrl"];
+               
                      $html = $this->client->load($this->productUrl);
                      $imgUrl = "";
                      $imgUrl = $html->find('#imgTagWrapperId img',0)->src;
@@ -52,6 +53,7 @@
                      }
                      else{
                             $price = "Not available";
+
                      }
                      $productTitle = $html->find('#productTitle',0)->innertext;
                      $aboutProduct = array();

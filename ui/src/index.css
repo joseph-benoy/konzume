@@ -5,3 +5,23 @@
 body{
     padding: 0 !important;
 }
+::-webkit-scrollbar {
+       width: 0.7vw;
+     }
+     
+     /* Track */
+     ::-webkit-scrollbar-track {
+       box-shadow: inset 0 0 5px grey; 
+       border-radius: 0px;
+     }
+      
+     /* Handle */
+     ::-webkit-scrollbar-thumb {
+       background: #212529; 
+       border-radius: 0px;
+     }
+     
+     /* Handle on hover */
+     ::-webkit-scrollbar-thumb:hover {
+       background: #212529; 
+     }
