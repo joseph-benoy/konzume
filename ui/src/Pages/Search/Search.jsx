@@ -95,6 +95,12 @@ const Search = ()=>{
                                     <li>{feature}</li>
                                 ))}
                             </ul>
+                            <h5>Reviews from web</h5>
+                            <ul>
+                                {reviews.map((rev)=>(
+                                    <li>{rev.replaceAll("<br/>"," ")}</li>
+                                ))}
+                            </ul>
                         </Col>
                     </Row>
                 </Col>
