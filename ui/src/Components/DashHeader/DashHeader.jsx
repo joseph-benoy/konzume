@@ -1,6 +1,5 @@
 import './DashHeader.scss';
-import {Navbar,Container,Offcanvas,Nav,Form,FormControl,Button,NavDropdown} from 'react-bootstrap';
-import {Search,PersonBadge,DoorOpen} from 'react-bootstrap-icons';
+import {Navbar,Container,Nav} from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 const DashHeader = ()=>{
     const nav = useNavigate();
