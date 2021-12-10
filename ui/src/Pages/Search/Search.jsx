@@ -3,12 +3,13 @@ import './Search.scss';
 import React from 'react';
 import axios from 'axios';
 import { PencilSquare } from 'react-bootstrap-icons';
+import qs from 'qs';
 const Search = ()=>{
     const [search,setSearch] = React.useState("");
     const [error,setError] = React.useState("");
     const [purl,setPurl] = React.useState("");
     const [alertType,setAlert] = React.useState("light");
-    const [krev,setKrev] = React.useState("No reviews from Konzume users...");
+    const [krev,setKrev] = React.useState("Nothing to show for now...");
 
 
     const [url,setUrl] = React.useState("");
@@ -62,6 +63,22 @@ const Search = ()=>{
                 document.getElementById('productSummary').style.display = "block";
                 setError("");
                 setAlert("light");
+                if(res.status===200){
+                    try{
+                        const params = qs.stringify({
+                            name:res.data.productTitle,
+                            url:res.data.productUrl
+                        });
+                        const save = await axios({
+                            method: 'POST',
+                            url: '/product/saveproduct',
+                            data:params,
+                            timeout:50000
+                        });
+                    }
+                    catch(e){
+                    }
+                }
             }
             catch(e){
                 setError("Couldn't  find the product!");
@@ -128,8 +145,8 @@ const Search = ()=>{
                     </Row>
                     <Row>
                         <Col>
+                                    <h5>Your review</h5>
                             <Form.Group className="mb-3">
-                                <Form.Label>Your review</Form.Label>
                                 <Form.Control as="textarea" rows={3} placeholder='enter your honest views of the product here'/>
                             </Form.Group>
                             <Button variant="dark" id="postBtn"><PencilSquare/>Post</Button>
@@ -137,6 +154,7 @@ const Search = ()=>{
                     </Row>
                     <Row>
                         <Col>
+                                    <h5>Reviews from Konzume users</h5>
                                     {krev}
                         </Col>
                     </Row>
