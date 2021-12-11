@@ -161,6 +161,11 @@ const Search = ()=>{
                         }
                     });
                     setKrev(getRes.data.success);
+                    getRes.data.success.map((rev)=>{
+                        if(rev.UID==sessionStorage.getItem("uid")){
+                            document.getElementById("newRev").style.display = "none";
+                        }
+                    });
                 }
                 catch(e){
                     setKrev([]);
@@ -171,6 +176,7 @@ const Search = ()=>{
 
         }
     }
+
     return(
         <Container fluid>
             <Row>
@@ -221,8 +227,8 @@ const Search = ()=>{
                         </Col>
                     </Row>
                     <Row>
-                        <Col>
-                                    <h5>Your review</h5>
+                        <Col id="newRev">
+                            <h5>Your review</h5>
                             <Form.Group className="mb-3">
                                 <Form.Control as="textarea" onChange={(e)=>{setComment(e.target.value)}} rows={3} placeholder='enter your honest views of the product here'/>
                             </Form.Group>
