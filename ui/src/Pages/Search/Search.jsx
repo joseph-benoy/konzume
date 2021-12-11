@@ -78,17 +78,6 @@ const Search = ()=>{
                     catch(e){
                     }
                 }
-                const params = qs.stringify({
-                    name:title,
-                    url:url
-                });
-                const getProduct = await axios({
-                    method: 'POST',
-                    url: '/product/getproduct',
-                    data:params,
-                    timeout:50000
-                });
-                sessionStorage.setItem("pid",getProduct.data.success[0].ID);
             }
             catch(e){
                 setError("Couldn't  find the product!");
@@ -105,26 +94,44 @@ const Search = ()=>{
     const saveReview = React.useCallback(async()=>{
         try{
             const params = qs.stringify({
-                uid:sessionStorage.getItem("uid"),
-                pid:sessionStorage.getItem("pid"),
-                comment:comment
+                name:title,
+                url:url
             });
-            console.log(params);
-            const saveRes = await axios({
+            const getProduct = await axios({
                 method: 'POST',
-                url: '/review/new',
+                url: '/product/getproduct',
                 data:params,
-                timeout:50000,
-                headers: { 'content-type': 'application/x-www-form-urlencoded',
-                    'Authorization':`Bearer ${sessionStorage.getItem("jwt")}`
-                }
+                timeout:50000
             });
-            setError("Posted your review!");
-            setAlert("success");
+            if(getProduct.status===200){
+                try{
+                    const params = qs.stringify({
+                        uid:sessionStorage.getItem("uid"),
+                        pid:getProduct.data.success[0].ID,
+                        comment:comment
+                    });
+                    console.log(params);
+                    const saveRes = await axios({
+                        method: 'POST',
+                        url: '/review/new',
+                        data:params,
+                        timeout:50000,
+                        headers: { 'content-type': 'application/x-www-form-urlencoded',
+                            'Authorization':`Bearer ${sessionStorage.getItem("jwt")}`
+                        }
+                    });
+                    setError("Posted your review!");
+                    setAlert("success");
+                }
+                catch(e){
+                    setError("Couldn't post your review!");
+                    setAlert("danger");
+                }
+            }
+            console.log(getProduct.data);
         }
         catch(e){
-            setError("Couldn't post your review!");
-            setAlert("danger");
+
         }
     });
     return(
