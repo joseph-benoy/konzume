@@ -2,14 +2,14 @@ import { Col, Container, Form, Row,Button,Alert } from 'react-bootstrap';
 import './Search.scss';
 import React from 'react';
 import axios from 'axios';
-import { PencilSquare } from 'react-bootstrap-icons';
+import { PencilSquare,HandThumbsUp,HandThumbsDown } from 'react-bootstrap-icons';
 import qs from 'qs';
 const Search = ()=>{
     const [search,setSearch] = React.useState("");
     const [error,setError] = React.useState("");
     const [purl,setPurl] = React.useState("");
     const [alertType,setAlert] = React.useState("light");
-    const [krev,setKrev] = React.useState("Nothing to show for now...");
+    const [krev,setKrev] = React.useState([]);
     const [url,setUrl] = React.useState("");
     const [img,setImg] = React.useState("");
     const [rating,setRating] = React.useState("");
@@ -78,6 +78,7 @@ const Search = ()=>{
                     catch(e){
                     }
                 }
+                await fetchReviews(res.data.productTitle,res.data.productUrl);
             }
             catch(e){
                 setError("Couldn't  find the product!");
@@ -110,7 +111,6 @@ const Search = ()=>{
                         pid:getProduct.data.success[0].ID,
                         comment:comment
                     });
-                    console.log(params);
                     const saveRes = await axios({
                         method: 'POST',
                         url: '/review/new',
@@ -128,12 +128,49 @@ const Search = ()=>{
                     setAlert("danger");
                 }
             }
-            console.log(getProduct.data);
         }
         catch(e){
 
         }
     });
+    const fetchReviews = async(ptitle,purl)=>{
+        try{
+            const params = qs.stringify({
+                name:ptitle,
+                url:purl
+            });
+            const getProduct = await axios({
+                method: 'POST',
+                url: '/product/getproduct',
+                data:params,
+                timeout:50000
+            });
+            if(getProduct.status===200){
+                try{
+                    const params = qs.stringify({
+                        pid:getProduct.data.success[0].ID
+                    });
+                    const getRes = await axios({
+                        method: 'POST',
+                        url: '/review/get',
+                        data:params,
+                        timeout:50000,
+                        headers: { 'content-type': 'application/x-www-form-urlencoded',
+                            'Authorization':`Bearer ${sessionStorage.getItem("jwt")}`
+                        }
+                    });
+                    setKrev(getRes.data.success);
+                }
+                catch(e){
+                    setError("Couldn't fetch Konzume reviews!");
+                    setAlert("danger");
+                }
+            }
+        }
+        catch(e){
+
+        }
+    }
     return(
         <Container fluid>
             <Row>
@@ -195,7 +232,35 @@ const Search = ()=>{
                     <Row>
                         <Col>
                                     <h5>Reviews from Konzume users</h5>
-                                    {krev}
+                                    <ul id="krev-list">
+                                        {
+                                            krev.map((rev)=>(
+                                                <li>
+                                                    <Container>
+                                                    <Row>
+                                                        <Col>
+                                                            <p>{rev.COMMENT}</p>
+                                                        </Col>
+                                                    </Row>
+                                                    <Row>
+                                                        <Col lg={1}>
+                                                            <Button variant='link'><HandThumbsUp/></Button>
+                                                        </Col>
+                                                        <Col lg={1}>
+                                                            <p>{rev.UPS}</p>
+                                                        </Col>
+                                                        <Col lg={1}>
+                                                            <Button variant='link'><HandThumbsDown/></Button>
+                                                        </Col>
+                                                        <Col lg={1}>
+                                                            <p>{rev.DOWNS}</p>
+                                                        </Col>
+                                                    </Row>
+                                                    </Container>
+                                                </li>
+                                            ))
+                                        }
+                                    </ul>
                         </Col>
                     </Row>
                 </Col>
