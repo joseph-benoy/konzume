@@ -10,8 +10,6 @@ const Search = ()=>{
     const [purl,setPurl] = React.useState("");
     const [alertType,setAlert] = React.useState("light");
     const [krev,setKrev] = React.useState("Nothing to show for now...");
-
-
     const [url,setUrl] = React.useState("");
     const [img,setImg] = React.useState("");
     const [rating,setRating] = React.useState("");
@@ -20,6 +18,7 @@ const Search = ()=>{
     const [reviews,setReviews] = React.useState([]);
     const [about,setAbout] = React.useState([]);
     const [flipReview,setFlip] = React.useState("");
+    const [comment,setComment] = React.useState("");
     const submitSearch = async()=>{
         if(search!=''){
             try{
@@ -79,6 +78,17 @@ const Search = ()=>{
                     catch(e){
                     }
                 }
+                const params = qs.stringify({
+                    name:title,
+                    url:url
+                });
+                const getProduct = await axios({
+                    method: 'POST',
+                    url: '/product/getproduct',
+                    data:params,
+                    timeout:50000
+                });
+                sessionStorage.setItem("pid",getProduct.data.success[0].ID);
             }
             catch(e){
                 setError("Couldn't  find the product!");
@@ -92,8 +102,31 @@ const Search = ()=>{
             setAlert("danger");
         }
     }
-
-
+    const saveReview = React.useCallback(async()=>{
+        try{
+            const params = qs.stringify({
+                uid:sessionStorage.getItem("uid"),
+                pid:sessionStorage.getItem("pid"),
+                comment:comment
+            });
+            console.log(params);
+            const saveRes = await axios({
+                method: 'POST',
+                url: '/review/new',
+                data:params,
+                timeout:50000,
+                headers: { 'content-type': 'application/x-www-form-urlencoded',
+                    'Authorization':`Bearer ${sessionStorage.getItem("jwt")}`
+                }
+            });
+            setError("Posted your review!");
+            setAlert("success");
+        }
+        catch(e){
+            setError("Couldn't post your review!");
+            setAlert("danger");
+        }
+    });
     return(
         <Container fluid>
             <Row>
@@ -147,9 +180,9 @@ const Search = ()=>{
                         <Col>
                                     <h5>Your review</h5>
                             <Form.Group className="mb-3">
-                                <Form.Control as="textarea" rows={3} placeholder='enter your honest views of the product here'/>
+                                <Form.Control as="textarea" onChange={(e)=>{setComment(e.target.value)}} rows={3} placeholder='enter your honest views of the product here'/>
                             </Form.Group>
-                            <Button variant="dark" id="postBtn"><PencilSquare/>Post</Button>
+                            <Button variant="dark" onClick={saveReview} id="postBtn"><PencilSquare/>Post</Button>
                         </Col>
                     </Row>
                     <Row>

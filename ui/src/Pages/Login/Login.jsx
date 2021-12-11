@@ -38,6 +38,8 @@ const Login = ()=>{
                 }
             );
             sessionStorage.setItem("jwt",resp.data.jwt);
+            sessionStorage.setItem("uid",resp.data.uid);
+            sessionStorage.setItem("email",resp.data.email);
             nav("/dashboard/search");
         }
         catch(e){

@@ -8,7 +8,7 @@ class Review extends Database{
         $tokenData = $this->validateUserToken();
         if($tokenData){
             $email = $tokenData->data[3];
-            if($this->insert("INSERT INTO REVIEW(UID,PID,COMMENT) VALUES(?,?,?)",array(intval($data['uid']),intval($data['pid']),$data['comment']),"iis")){
+            if($this->insert("INSERT INTO REVIEWS(UID,PID,COMMENT) VALUES(?,?,?)",array(intval($data['uid']),intval($data['pid']),$data['comment']),"iis")){
                 return array("success"=>"inserted successfully");
             }
             else{
@@ -23,7 +23,7 @@ class Review extends Database{
         $tokenData = $this->validateUserToken();
         if($tokenData){
             $email = $tokenData->data[3];
-            $reviewData = $this->select("SELECT * FROM REVIEW WHERE PID=?",array(intval($data['pid'])),"i");
+            $reviewData = $this->select("SELECT * FROM REVIEWS WHERE PID=?",array(intval($data['pid'])),"i");
             if($reviewData!=false){
                 return array("success"=>$reviewData);
             }
@@ -39,7 +39,7 @@ class Review extends Database{
         $tokenData = $this->validateUserToken();
         if($tokenData){
             $email = $tokenData->data[3];
-            if($this->update("UPDATE REVIEW SET UPS = UPS+1 WHERE ID=?",array(intval($data['id'])),"i")){
+            if($this->update("UPDATE REVIEWS SET UPS = UPS+1 WHERE ID=?",array(intval($data['id'])),"i")){
                 return array("success"=>"upvoted");
             }
             else{
@@ -54,7 +54,7 @@ class Review extends Database{
         $tokenData = $this->validateUserToken();
         if($tokenData){
             $email = $tokenData->data[3];
-            if($this->update("UPDATE REVIEW SET DOWNS = DOWNS+1 WHERE ID=?",array(intval($data['id'])),"i")){
+            if($this->update("UPDATE REVIEWS SET DOWNS = DOWNS+1 WHERE ID=?",array(intval($data['id'])),"i")){
                 return array("success"=>"downvoted");
             }
             else{

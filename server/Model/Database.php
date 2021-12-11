@@ -32,7 +32,7 @@ class Database{
         try{
             $statement = $this->connection->prepare($query);
             if($statement==false){
-                throw New Exception("Unable to do prepared statement: (preparation error) " . $query);
+                throw New Exception($this->connection->error. $query);
             }
             else{
                 if($params){

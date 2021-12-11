@@ -122,7 +122,7 @@ class User extends Database{
         if($userData!=false){
             if($userData[0]['PASSWORD']==$data['password']){
                 $jwt = (new JwtLogin())->generateToken(array($userData[0]['ID'],$userData[0]['FNAME'],$userData[0]['LNAME'],$userData[0]['EMAIL']));
-                return array("jwt"=>$jwt);
+                return array("jwt"=>$jwt,"uid"=>$userData[0]['ID'],"email"=>$userData[0]['EMAIL']);
             }
             else{
                 http_response_code(403);
