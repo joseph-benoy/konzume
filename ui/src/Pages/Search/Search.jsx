@@ -246,13 +246,16 @@ const Search = ()=>{
                                                         <Col lg={1}>
                                                             <Button variant='link'><HandThumbsUp/></Button>
                                                         </Col>
-                                                        <Col lg={1}>
-                                                            <p>{rev.UPS}</p>
-                                                        </Col>
+
                                                         <Col lg={1}>
                                                             <Button variant='link'><HandThumbsDown/></Button>
                                                         </Col>
-                                                        <Col lg={1}>
+                                                    </Row>
+                                                    <Row>
+                                                        <Col lg={1} className='reactionCounts'>
+                                                            <p>{rev.UPS}</p>
+                                                        </Col>  
+                                                        <Col lg={1} className='reactionCounts'>
                                                             <p>{rev.DOWNS}</p>
                                                         </Col>
                                                     </Row>
