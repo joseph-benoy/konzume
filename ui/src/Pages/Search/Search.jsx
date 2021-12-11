@@ -122,6 +122,7 @@ const Search = ()=>{
                     });
                     setError("Posted your review!");
                     setAlert("success");
+                    fetchReviews(title,url);
                 }
                 catch(e){
                     setError("Couldn't post your review!");
@@ -162,8 +163,7 @@ const Search = ()=>{
                     setKrev(getRes.data.success);
                 }
                 catch(e){
-                    setError("Couldn't fetch Konzume reviews!");
-                    setAlert("danger");
+                    setKrev([]);
                 }
             }
         }

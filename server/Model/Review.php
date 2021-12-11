@@ -12,10 +12,12 @@ class Review extends Database{
                 return array("success"=>"inserted successfully");
             }
             else{
+                http_response_code(403);
                 return array("error"=>"failed to insert");
             }
         }
         else{
+            http_response_code(403);
             return array("error"=>"access denied");
         }
     }
@@ -28,10 +30,12 @@ class Review extends Database{
                 return array("success"=>$reviewData);
             }
             else{
+                http_response_code(403);
                 return array("error"=>"falied to fetch data");
             }
         }
         else{
+            http_response_code(403);
             return array("error"=>"access denied");
         }
     }
