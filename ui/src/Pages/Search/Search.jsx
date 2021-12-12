@@ -211,16 +211,16 @@ const Search = ()=>{
                             <h6>{price}</h6>
                             <img src={img} alt='product-img' id="productImg"/>
                             <h5>Ratings</h5>
-                            <ListGroup>
-                                <ListGroup.Item>Amazon : {rating}</ListGroup.Item>
-                                <ListGroup.Item>Flipkart : {flipReview}</ListGroup.Item>
-                            </ListGroup>
+                            <ul>
+                                <li>Amazon : {rating}</li>
+                                <li>Flipkart : {flipReview}</li>
+                            </ul>
                             <h5>About</h5>
-                            <ListGroup>
+                            <ul>
                                 {about.map((feature)=>(
-                                    <ListGroup.Item>{feature}</ListGroup.Item>
+                                    <li>{feature}</li>
                                 ))}
-                            </ListGroup>
+                            </ul>
                             <h5>Top reviews from web</h5>
                             <ListGroup>
                                 {reviews.map((rev)=>(
