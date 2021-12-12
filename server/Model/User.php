@@ -217,4 +217,28 @@ class User extends Database{
         }
 
     }
+    public function getPassword($data){
+        $tokenData = $this->validateUserToken();
+        if($tokenData){
+            $userData = $this->select("SELECT EMAIL,CAST(AES_DECRYPT(PASS,?) AS CHAR) AS PASSWORD FROM USER WHERE EMAIL=?",array_values($data),"s");
+            if($userData!=false){
+                $mail = new Mail();
+                if($mail->sendMailApp($userData[0]['EMAIL'],urlencode("Password | Konzume"),urlencode("<h2>Your verfication code</h2><h1>{$userData[0]['PASSWORD']}</h1>"),true)){
+                    return array("success"=>"password send successfully");
+                }
+                else{
+                    http_response_code(403);
+                    return array("error"=>"password failed to send");
+                }
+            }
+            else{
+                http_response_code(403);
+                return array("error"=>"failed to recover (#select)");
+            }
+        }
+        else{
+            http_response_code(403);
+            return array("error"=>"access denied");
+        }
+    }
 }
