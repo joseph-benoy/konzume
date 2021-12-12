@@ -258,7 +258,7 @@ const Register = ()=>{
                                         }}
                                         id="cpass"
                                         />
-                                        <InputGroup.Text>{(eyeType==='Eye')?<Eye onClick={showPasswordC}/>:<EyeSlash onClick={showPassword}/>}</InputGroup.Text>
+                                        <InputGroup.Text>{(eyeTypeC==='Eye')?<Eye onClick={showPasswordC}/>:<EyeSlash onClick={showPasswordC}/>}</InputGroup.Text>
                                     </InputGroup>
                                 </Form.Group>
                             </Col>
