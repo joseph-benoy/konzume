@@ -218,13 +218,13 @@ const Search = ()=>{
                                 <li>Amazon : {rating}</li>
                                 <li>Flipkart : {flipReview}</li>
                             </ul>
-                            <h5>About</h5>
+                            <h5 id="about">About</h5>
                             <ul>
                                 {about.map((feature)=>(
                                     <li>{feature}</li>
                                 ))}
                             </ul>
-                            <h5>Top reviews from web</h5>
+                            <h5 id="topRev">Top reviews from web</h5>
                             <ListGroup>
                                 {reviews.map((rev)=>(
                                     <ListGroup.Item>{rev.replaceAll("<br/>"," ")}</ListGroup.Item>
