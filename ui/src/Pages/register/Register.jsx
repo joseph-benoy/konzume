@@ -2,7 +2,7 @@ import { Container,Row,Col,Nav,Form,InputGroup,FormControl,Button,Alert } from '
 import './Register.scss';
 import Header from '../../Components/Header/Header';
 import React from 'react';
-import {People,Person,FileLock,ShieldLock} from 'react-bootstrap-icons';
+import {People,Person,FileLock,ShieldLock,Eye,EyeSlash } from 'react-bootstrap-icons';
 import qs from 'qs';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -17,6 +17,30 @@ const Register = ()=>{
     const [error,setError] = React.useState("");
     const [regStatus,setRegStatus] = React.useState(true);
     const [loginStatus,setLogin] = React.useState(true);
+    const [eyeType,setEye] = React.useState("Eye");
+    const showPassword = React.useCallback(()=>{
+        const pass = document.getElementById('pass');
+        if(pass.getAttribute('type')==='text'){
+            pass.setAttribute('type','password');
+            setEye("Eye");
+        }
+        else{
+            pass.setAttribute('type','text');
+            setEye("EyeSlash");
+        }
+    });
+    const [eyeTypeC,setEyeC] = React.useState("Eye");
+    const showPasswordC = React.useCallback(()=>{
+        const pass = document.getElementById('cpass');
+        if(pass.getAttribute('type')==='text'){
+            pass.setAttribute('type','password');
+            setEyeC("Eye");
+        }
+        else{
+            pass.setAttribute('type','text');
+            setEyeC("EyeSlash");
+        }
+    });
     const registerUser = async ()=>{
         if(fname!==''){
             if(lname!==''){
@@ -213,7 +237,9 @@ const Register = ()=>{
                                         onChange = {(e)=>{
                                             setPassword(e.target.value);
                                         }}
+                                        id="pass"
                                         />
+                                        <InputGroup.Text>{(eyeType==='Eye')?<Eye onClick={showPassword}/>:<EyeSlash onClick={showPassword}/>}</InputGroup.Text>
                                     </InputGroup>
                                 </Form.Group>
                             </Col>
@@ -230,7 +256,9 @@ const Register = ()=>{
                                         onChange = {(e)=>{
                                             setCpassword(e.target.value);
                                         }}
+                                        id="cpass"
                                         />
+                                        <InputGroup.Text>{(eyeType==='Eye')?<Eye onClick={showPasswordC}/>:<EyeSlash onClick={showPassword}/>}</InputGroup.Text>
                                     </InputGroup>
                                 </Form.Group>
                             </Col>
