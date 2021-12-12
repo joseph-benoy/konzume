@@ -1,4 +1,4 @@
-import { Container,Row,Col } from 'react-bootstrap';
+import { Container,Row,Col,InputGroup,FormControl } from 'react-bootstrap';
 import Header from '../../Components/Header/Header';
 import './Contact.scss';
 const Contact = ()=>{
@@ -11,7 +11,17 @@ const Contact = ()=>{
             </Row>
             <Row>
                 <Col>
-                    <h1>contact</h1>
+                    <h1>Connect with us</h1>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <InputGroup className="mb-3">
+                        <InputGroup.Text>@</InputGroup.Text>
+                        <FormControl
+                        placeholder="valid email id"
+                        />
+                    </InputGroup>
                 </Col>
             </Row>
         </Container>
