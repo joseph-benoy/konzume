@@ -3,9 +3,53 @@ import Header from '../../Components/Header/Header';
 import './Contact.scss';
 import { Person} from 'react-bootstrap-icons';
 import React from 'react';
+import axios from 'axios';
+import qs from 'qs';
 const Contact = ()=>{
     const [alertType,setAlertType] = React.useState("light");
     const [error,setError] = React.useState("");
+    const [name,setName] = React.useState("");
+    const [email,setEmail] = React.useState("");
+    const [message,setMessage] = React.useState("");
+    const sendMessage = React.useCallback(async()=>{
+        if(name!==""){
+            if(email!==""){
+                if(message.length>19){
+                    try{
+                        const params = qs.stringify({
+                            name:name,
+                            email:email,
+                            message:message
+                        });
+                        const res = await axios({
+                            method: 'POST',
+                            headers: { 'content-type': 'application/x-www-form-urlencoded' },
+                            url: '/admin/newmessage',
+                            data:params
+                        });
+                        setError("Message sent successfully!");
+                        setAlertType("success");
+                    }
+                    catch(e){
+                        setError("Couldn't send message!");
+                        setAlertType("danger");
+                    }
+                }
+                else{
+                    setError("Message should be longer!");
+                    setAlertType("danger");
+                }
+            }
+            else{
+                setError("Email can't be empty!");
+                setAlertType("danger");
+            }
+        }
+        else{
+            setError("Name can't be empty!");
+            setAlertType("danger");
+        }
+    });
     return(
         <Container fluid className='gx-0'>
             <Row className='gx-0'>

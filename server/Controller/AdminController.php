@@ -2,7 +2,7 @@
 require_once "BaseController.php";
 require_once "./Model/Admin.php";
 class AdminController extends BaseController{
-    public function new(){
+    public function newmessage(){
         $strErrorDesc = '';
         $requestMethod = $_SERVER['REQUEST_METHOD'];
         if(strtoupper($requestMethod)=='POST'){
