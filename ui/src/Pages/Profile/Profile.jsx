@@ -4,7 +4,9 @@ import {People,Person,Eye,EyeSlash,FileLock} from 'react-bootstrap-icons';
 import React from 'react';
 import axios from 'axios';
 import qs from 'qs';
+import { useNavigate } from 'react-router-dom';
 const Profile = ()=>{
+    const nav = useNavigate();
     const [eyeType,setEye] = React.useState("Eye");
     const showPassword = React.useCallback(()=>{
         const pass = document.getElementById('pass');
@@ -92,10 +94,23 @@ const Profile = ()=>{
     const handleShow = () => setShow(true);
     const deleteAccount = async()=>{
         try{
-            
+            const params = qs.stringify({
+                email:email,
+            });
+            const res = await axios({
+                method: 'POST',
+                headers: { 'content-type': 'application/x-www-form-urlencoded',
+                    'Authorization':`Bearer ${sessionStorage.getItem("jwt")}`
+                },
+                url: '/user/deleteuser',
+                data:params
+            });
+            nav("/home");
         }
         catch(e){
-            
+            setError("Couldn't delete account!");
+            setAlert("danger");
+            handleClose();
         }
     }
     return(
@@ -109,7 +124,7 @@ const Profile = ()=>{
                 <Button variant="secondary" onClick={handleClose}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={handleClose}>
+                <Button variant="primary" onClick={deleteAccount}>
                     Delete account
                 </Button>
                 </Modal.Footer>
