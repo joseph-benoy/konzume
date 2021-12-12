@@ -8,7 +8,7 @@ class AdminController extends BaseController{
         if(strtoupper($requestMethod)=='POST'){
             try{
                 $adminModel = new Admin();
-                $data = json_encode($adminModel->newMessage($_POST),JSON_UNESCAPED_SLASHES);
+                $data = json_encode($adminModel->saveMessage($_POST),JSON_UNESCAPED_SLASHES);
             }
             catch(Error $e){
                    $errorDesc = "Admin model error!";
