@@ -90,6 +90,14 @@ const Profile = ()=>{
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const deleteAccount = async()=>{
+        try{
+            
+        }
+        catch(e){
+            
+        }
+    }
     return(
         <>
                 <Modal show={show} onHide={handleClose} backdrop="static" centered id="modal">
