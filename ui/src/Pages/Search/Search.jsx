@@ -164,6 +164,7 @@ const Search = ()=>{
                     getRes.data.success.map((rev)=>{
                         if(rev.UID==sessionStorage.getItem("uid")){
                             document.getElementById("newRev").style.display = "none";
+                            document.getElementById("revs").style.display = "block";
                         }
                         else{
                             document.getElementById("newRev").style.display = "block";
@@ -173,6 +174,7 @@ const Search = ()=>{
                 catch(e){
                     setKrev([]);
                     document.getElementById("newRev").style.display = "block";
+                    document.getElementById("revs").style.display = "none";
                 }
             }
         }
@@ -240,7 +242,7 @@ const Search = ()=>{
                         </Col>
                     </Row>
                     <Row>
-                        <Col>
+                        <Col id="revs">
                                     <h5>Reviews from Konzume users</h5>
                                     <ListGroup>
                                         {
