@@ -1,5 +1,5 @@
 import './Profile.scss';
-import { Row,Col,Form,InputGroup,FormControl,Button,Alert } from 'react-bootstrap';
+import { Row,Col,Form,InputGroup,FormControl,Button,Alert,Modal } from 'react-bootstrap';
 import {People,Person,Eye,EyeSlash,FileLock} from 'react-bootstrap-icons';
 import React from 'react';
 import axios from 'axios';
@@ -86,8 +86,26 @@ const Profile = ()=>{
             setAlert("danger");
         }
     });
+    const [show, setShow] = React.useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     return(
         <>
+                <Modal show={show} onHide={handleClose} backdrop="static" centered id="modal">
+                <Modal.Header closeButton>
+                <Modal.Title>Delete account</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>Are u sure about deleting your account?</Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                    Close
+                </Button>
+                <Button variant="primary" onClick={handleClose}>
+                    Delete account
+                </Button>
+                </Modal.Footer>
+            </Modal>
                 <Form id="profile-form">
                         <h2 style={{textAlign:"center"}}>Profile</h2>
                         <Row>
@@ -178,7 +196,7 @@ const Profile = ()=>{
                         </Row>
                         <Row>
                             <Col>
-                                <Button variant="link" id="deleteBtn">Delete this account</Button>
+                                <Button variant="link" id="deleteBtn" onClick={handleShow}>Delete this account</Button>
                             </Col>
                         </Row>
                     </Form>
