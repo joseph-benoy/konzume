@@ -53,6 +53,26 @@ const Login = ()=>{
             setAlertType("danger");
         }
     }
+    const getPassword = async()=>{
+        try{
+            const params = qs.stringify({
+                email:data.email
+            });
+            const resp = await axios({
+                        method: 'POST',
+                        headers: { 'content-type': 'application/x-www-form-urlencoded' },
+                        url: '/user/getpassword',
+                        data:params
+                    }
+                );
+                setError("Password is send to "+data.email);
+                setAlertType("success");
+        }
+        catch(e){
+            setError("Can't find your account!");
+            setAlertType("danger");
+        }
+    }
     return(
         <Container fluid className='gx-0'>
             <Row className='gx-0'>
