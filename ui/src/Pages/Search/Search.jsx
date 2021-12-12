@@ -165,6 +165,9 @@ const Search = ()=>{
                         if(rev.UID==sessionStorage.getItem("uid")){
                             document.getElementById("newRev").style.display = "none";
                         }
+                        else{
+                            document.getElementById("newRev").style.display = "block";
+                        }
                     });
                 }
                 catch(e){
@@ -255,14 +258,6 @@ const Search = ()=>{
 
                                                         <Col lg={1}>
                                                             <Button variant='link'><HandThumbsDown/></Button>
-                                                        </Col>
-                                                    </Row>
-                                                    <Row>
-                                                        <Col lg={1} className='reactionCounts'>
-                                                            <p>{rev.UPS}</p>
-                                                        </Col>  
-                                                        <Col lg={1} className='reactionCounts'>
-                                                            <p>{rev.DOWNS}</p>
                                                         </Col>
                                                     </Row>
                                                     </Container>

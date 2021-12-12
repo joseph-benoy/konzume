@@ -23,7 +23,6 @@ const Header = ()=>{
                 <Offcanvas.Body>
                     <Nav className="justify-content-end flex-grow-1 pe-3">
                     <Nav.Link onClick={()=>nav("/home")}>Home</Nav.Link>
-                    <Nav.Link onClick={()=>nav("/about")}>About</Nav.Link>
                     <Nav.Link onClick={()=>nav("/contact")}>Contact</Nav.Link>
                     <Nav.Link onClick={()=>nav("/signup")}>Sign Up</Nav.Link>
                     <Nav.Link onClick={()=>nav("/login")}>Login</Nav.Link>
