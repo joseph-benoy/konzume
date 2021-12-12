@@ -69,6 +69,7 @@ const Contact = ()=>{
                                 required
                                 type="text"
                                 placeholder="your full name"
+                                onChange={(e)=>setName(e.target.value)}
                                 />
                             </InputGroup>
                         </Form.Group>
@@ -80,17 +81,18 @@ const Contact = ()=>{
                                 required
                                 type="email"
                                 placeholder="valid email id"
+                                onChange={(e)=>setEmail(e.target.value)}
                                 />
                             </InputGroup>
                         </Form.Group>
                         <Form.Group className="mb-3" >
                             <Form.Label>Message</Form.Label>
                             <InputGroup>
-                                <FormControl rows={5} as="textarea" placeholder="enter your message here"/>
+                                <FormControl onChange={(e)=>setMessage(e.target.value)} rows={5} as="textarea" placeholder="enter your message here"/>
                             </InputGroup>
                         </Form.Group>
                         <Row>
-                            <Button variant="dark" id="sendBtn">
+                            <Button variant="dark" id="sendBtn" onClick={sendMessage}>
                                 Send message
                             </Button>                          
                         </Row>
