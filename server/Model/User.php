@@ -187,4 +187,26 @@ class User extends Database{
             return array("error"=>"access denied");
         }
     }
+    public function deleteUser($data){
+        $userData = $this->select("SELECT * FROM USER WHERE EMAIL=?",array_values($data),"s");
+        if($userData!=false){
+            if($this->delete("DELETE FROM REVIEWS WHERE UID=?",$userData[0]['ID'],"s")){
+                if($this->delete("DELETE FROM USER WHERE EMAIL=?",array_values($data),"s")){
+                    return array("success"=>"user account deleted!");
+                }
+                else{
+                    http_response_code(403);
+                    array("error"=>"failed to delete user!(#reviews)");
+                }
+            }
+            else{
+                http_response_code(403);
+                array("error"=>"failed to delete user!(#user)");
+            }
+        }
+        else{
+            http_response_code(403);
+            array("error"=>"failed to delete user!(#select)");
+        }
+    }
 }
