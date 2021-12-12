@@ -176,6 +176,11 @@ const Profile = ()=>{
                                 </div>                            
                             </Col>
                         </Row>
+                        <Row>
+                            <Col>
+                                <Button variant="link" id="deleteBtn">Delete this account</Button>
+                            </Col>
+                        </Row>
                     </Form>
                     <Row>
                         <Col>

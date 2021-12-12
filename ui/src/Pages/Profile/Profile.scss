@@ -1,7 +1,7 @@
 #profile-form{
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
     width: 90vw !important;
-    padding: 5vh 3vw !important;
+    padding: 3vh !important;
     margin-top: 5vh !important;
     margin-left: 4vw !important;
     border-radius: 15px !important;
@@ -12,9 +12,11 @@ h2{
 #update-btn{
     margin-left: 30vw !important;
 }
-#update-alert{
-    width: 50% !important;
+#deleteBtn{
+    margin-left: 44% !important;
+    text-decoration: none;
     margin-top: 1% !important;
-    margin-left: 27% !important;
-    text-align: center;
+}
+#error-alert{
+    margin-top: -5% !important;
 }
