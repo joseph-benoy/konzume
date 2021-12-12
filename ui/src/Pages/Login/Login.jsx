@@ -53,8 +53,10 @@ const Login = ()=>{
             setAlertType("danger");
         }
     }
-    const getPassword = async()=>{
+    const getPassword = async(data)=>{
         try{
+            setError("Password is being sent...");
+            setAlertType("info");
             const params = qs.stringify({
                 email:data.email
             });
@@ -124,7 +126,7 @@ const Login = ()=>{
                         <Button variant="dark" type="submit">
                             Login
                         </Button>
-                        <Button variant='link' style={{textDecoration:"none"}}>Request for password</Button>
+                        <Button variant='link' onClick={handleSubmit(getPassword)} style={{textDecoration:"none"}}>Request for password</Button>
                         </Form>
 
                 </Col>
