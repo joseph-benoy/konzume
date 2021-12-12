@@ -7,7 +7,7 @@ const DashHeader = ()=>{
         <>
         <Navbar bg="dark" variant="dark" style={{position:"sticky !important",top:"0 !important"}}>
             <Container>
-                <Navbar.Brand href="#home">Konzume</Navbar.Brand>
+                <Navbar.Brand href="#home" id="heading">Konzume</Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link onClick={()=>{nav("/dashboard/search");}} className="nav-links">Search</Nav.Link>
                     <Nav.Link onClick={()=>{nav("/dashboard/profile");}}>Profile</Nav.Link>
