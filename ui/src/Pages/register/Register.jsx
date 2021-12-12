@@ -237,7 +237,7 @@ const Register = ()=>{
                         </Row>
                         <Row>
                             <Col>
-                                    <Button id="requestBtn" variant="primary"  onClick={otpRequest}>
+                                    <Button id="requestBtn" variant="dark"  onClick={otpRequest}>
                                         Request OTP
                                     </Button>
                             </Col>
@@ -261,7 +261,7 @@ const Register = ()=>{
                             </Col>
                             <Col lg={2}>
                                 <div className="d-grid gap-2">
-                                    <Button variant="primary" id="otp-btn" onClick={otpVerificaton}>
+                                    <Button variant="dark" id="otp-btn" onClick={otpVerificaton}>
                                         Verify OTP
                                     </Button>
                                 </div>
@@ -270,7 +270,7 @@ const Register = ()=>{
                         <Row>
                             <Col lg={8}>
                                 <div className="d-grid gap-2">
-                                    <Button onClick={registerUser} variant="primary" disabled={regStatus} id="register-btn">
+                                    <Button onClick={registerUser} variant="dark" disabled={regStatus} id="register-btn">
                                         Register
                                     </Button>
                                 </div>                            
