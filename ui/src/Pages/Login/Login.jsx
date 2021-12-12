@@ -104,9 +104,14 @@ const Login = ()=>{
                         <Button variant="dark" type="submit">
                             Login
                         </Button>
-                        <Button variant='link' onClick={()=>nav("/signup")} style={{textDecoration:"none"}}>Not registered? Sign Up</Button>
+                        <Button variant='link' style={{textDecoration:"none"}}>Request for password</Button>
                         </Form>
 
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <Button id="regBtn" variant='link' onClick={()=>nav("/signup")} style={{textDecoration:"none"}}>Not registered? Sign Up</Button>
                 </Col>
             </Row>
             <Row>
