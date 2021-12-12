@@ -172,6 +172,7 @@ const Search = ()=>{
                 }
                 catch(e){
                     setKrev([]);
+                    document.getElementById("newRev").style.display = "block";
                 }
             }
         }
