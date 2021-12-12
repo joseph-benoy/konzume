@@ -1,8 +1,8 @@
-import { Col, Container, Form, Row,Button,Alert } from 'react-bootstrap';
+import { Col, Container, Form, Row,Button,Alert,ListGroup } from 'react-bootstrap';
 import './Search.scss';
 import React from 'react';
 import axios from 'axios';
-import { PencilSquare,HandThumbsUp,HandThumbsDown } from 'react-bootstrap-icons';
+import { PencilSquare} from 'react-bootstrap-icons';
 import qs from 'qs';
 const Search = ()=>{
     const [search,setSearch] = React.useState("");
@@ -211,22 +211,22 @@ const Search = ()=>{
                             <h6>{price}</h6>
                             <img src={img} alt='product-img' id="productImg"/>
                             <h5>Ratings</h5>
-                            <ul>
-                                <li>Amazon : {rating}</li>
-                                <li>Flipkart : {flipReview}</li>
-                            </ul>
+                            <ListGroup>
+                                <ListGroup.Item>Amazon : {rating}</ListGroup.Item>
+                                <ListGroup.Item>Flipkart : {flipReview}</ListGroup.Item>
+                            </ListGroup>
                             <h5>About</h5>
-                            <ul>
+                            <ListGroup>
                                 {about.map((feature)=>(
-                                    <li>{feature}</li>
+                                    <ListGroup.Item>{feature}</ListGroup.Item>
                                 ))}
-                            </ul>
+                            </ListGroup>
                             <h5>Top reviews from web</h5>
-                            <ul>
+                            <ListGroup>
                                 {reviews.map((rev)=>(
-                                    <li>{rev.replaceAll("<br/>"," ")}</li>
+                                    <ListGroup.Item>{rev.replaceAll("<br/>"," ")}</ListGroup.Item>
                                 ))}
-                            </ul>
+                            </ListGroup>
                         </Col>
                     </Row>
                     <Row>
@@ -241,30 +241,28 @@ const Search = ()=>{
                     <Row>
                         <Col>
                                     <h5>Reviews from Konzume users</h5>
-                                    <ul id="krev-list">
+                                    <ListGroup>
                                         {
                                             krev.map((rev)=>(
-                                                <li>
-                                                    <Container>
-                                                    <Row>
-                                                        <Col>
-                                                            <p>{rev.COMMENT}</p>
-                                                        </Col>
-                                                    </Row>
-                                                    <Row>
-                                                        <Col lg={1}>
-                                                            <Button variant='link'><HandThumbsUp/></Button>
-                                                        </Col>
-
-                                                        <Col lg={1}>
-                                                            <Button variant='link'><HandThumbsDown/></Button>
-                                                        </Col>
-                                                    </Row>
-                                                    </Container>
-                                                </li>
+                                                <>
+                                                    <ListGroup.Item>
+                                                        <Container>
+                                                            <Row>
+                                                                <Col className="profileName">
+                                                                    {rev.FNAME+" "+rev.LNAME}
+                                                                </Col>
+                                                            </Row>
+                                                            <Row>
+                                                                <Col>
+                                                                    {rev.COMMENT}
+                                                                </Col>
+                                                            </Row>
+                                                        </Container>
+                                                    </ListGroup.Item>
+                                                </>
                                             ))
                                         }
-                                    </ul>
+                                    </ListGroup>
                         </Col>
                     </Row>
                 </Col>

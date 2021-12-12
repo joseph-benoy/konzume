@@ -25,7 +25,7 @@ class Review extends Database{
         $tokenData = $this->validateUserToken();
         if($tokenData){
             $email = $tokenData->data[3];
-            $reviewData = $this->select("SELECT * FROM REVIEWS WHERE PID=?",array(intval($data['pid'])),"i");
+            $reviewData = $this->select("SELECT REVIEWS.UID,REVIEWS.PID,REVIEWS.COMMENT,USER.FNAME,USER.LNAME FROM REVIEWS INNER JOIN USER ON REVIEWS.UID=USER.ID AND REVIEWS.PID=?",array(intval($data['pid'])),"i");
             if($reviewData!=false){
                 return array("success"=>$reviewData);
             }
