@@ -218,12 +218,12 @@ class User extends Database{
 
     }
     public function getPassword($data){
-        $tokenData = $this->validateUserToken();
+        $tokenData = true;
         if($tokenData){
-            $userData = $this->select("SELECT EMAIL,CAST(AES_DECRYPT(PASS,?) AS CHAR) AS PASSWORD FROM USER WHERE EMAIL=?",array_values($data),"s");
+            $userData = $this->select("SELECT EMAIL,CAST(AES_DECRYPT(PASS,?) AS CHAR) AS PASSWORD FROM USER WHERE EMAIL=?",array(DB_ENC_KEY,$data['email']),"ss");
             if($userData!=false){
                 $mail = new Mail();
-                if($mail->sendMailApp($userData[0]['EMAIL'],urlencode("Password | Konzume"),urlencode("<h2>Your verfication code</h2><h1>{$userData[0]['PASSWORD']}</h1>"),true)){
+                if($mail->sendMailApp($userData[0]['EMAIL'],urlencode("Password | Konzume"),urlencode("<h2>Your password is </h2><h1>{$userData[0]['PASSWORD']}</h1>"),true)){
                     return array("success"=>"password send successfully");
                 }
                 else{
