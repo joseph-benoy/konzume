@@ -99,4 +99,6 @@
                      return array("reviewText"=>$reviewText);
               }
        }
+       $x = new Amazon();
+       print_r($x->getProduct("oppo a31"));
 
