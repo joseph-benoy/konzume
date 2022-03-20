@@ -14,7 +14,7 @@ const Contact = ()=>{
     const sendMessage = React.useCallback(async()=>{
         if(name!==""){
             if(email!==""){
-                if(message.length>19){
+                if(message.length>5){
                     try{
                         const params = qs.stringify({
                             name:name,

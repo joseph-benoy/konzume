@@ -2,7 +2,7 @@ import { Col, Container, Form, Row,Button,Alert,ListGroup } from 'react-bootstra
 import './Search.scss';
 import React from 'react';
 import axios from 'axios';
-import { PencilSquare} from 'react-bootstrap-icons';
+import { CaretDown, CaretUp, PencilSquare} from 'react-bootstrap-icons';
 import qs from 'qs';
 const Search = ()=>{
     const [search,setSearch] = React.useState("");
@@ -192,7 +192,7 @@ const Search = ()=>{
             </Row>
             <Row id="search-bar">
                 <Col lg={11}>
-                    <Form.Control value={search} onChange={(e)=>{setSearch(e.target.value)}} type="search" size="large" type="text" placeholder="Search the product name"/>
+                    <Form.Control value={search} onChange={(e)=>{setSearch(e.target.value)}} type="search" size="large"  placeholder="Search the product name"/>
                 </Col>
                 <Col lg={1}>
                     <Button onClick={submitSearch} variant="dark">Search</Button>
@@ -251,13 +251,29 @@ const Search = ()=>{
                                                     <ListGroup.Item>
                                                         <Container>
                                                             <Row>
-                                                                <Col className="profileName">
-                                                                    {rev.FNAME+" "+rev.LNAME}
+                                                                <Col lg={1}>
+                                                                    <Row>
+                                                                        <Col lg={6}>
+                                                                            <Button variant="link"><CaretUp/></Button>
+                                                                        </Col>
+                                                                    </Row>
+                                                                    <Row>
+                                                                    <Col lg={6}>
+                                                                            <Button variant="link"><CaretDown/></Button>
+                                                                        </Col>
+                                                                    </Row>
                                                                 </Col>
-                                                            </Row>
-                                                            <Row>
-                                                                <Col>
-                                                                    {rev.COMMENT}
+                                                                <Col lg={11}>
+                                                                    <Row>
+                                                                        <Col className="profileName">
+                                                                            {rev.FNAME+" "+rev.LNAME}
+                                                                        </Col>
+                                                                    </Row>
+                                                                    <Row>
+                                                                        <Col>
+                                                                            {rev.COMMENT}
+                                                                        </Col>
+                                                                    </Row>
                                                                 </Col>
                                                             </Row>
                                                         </Container>
