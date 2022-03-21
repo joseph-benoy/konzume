@@ -161,6 +161,7 @@ const Search = ()=>{
                         }
                     });
                     setKrev(getRes.data.success);
+                    console.log(getRes.data.success);
                     getRes.data.success.map((rev)=>{
                         if(rev.UID==sessionStorage.getItem("uid")){
                             document.getElementById("newRev").style.display = "none";
@@ -182,7 +183,52 @@ const Search = ()=>{
 
         }
     }
-
+    const upvote = async(rid)=>{
+        try{
+            const params = qs.stringify({
+                id:rid,
+                uid:sessionStorage.getItem("uid"),
+                type:1
+            });
+            await axios({
+                method: 'POST',
+                url: '/review/upvote',
+                data:params,
+                timeout:50000,
+                headers: { 'content-type': 'application/x-www-form-urlencoded',
+                    'Authorization':`Bearer ${sessionStorage.getItem("jwt")}`
+                }
+            });
+            alert("Upvoted the review!");
+            await submitSearch();
+        }
+        catch(e){
+            alert("already upvoted");
+        }
+    }
+    const downvote = async(rid)=>{
+        try{
+            const params = qs.stringify({
+                id:rid,
+                uid:sessionStorage.getItem("uid"),
+                type:0
+            });
+            await axios({
+                method: 'POST',
+                url: '/review/downvote',
+                data:params,
+                timeout:50000,
+                headers: { 'content-type': 'application/x-www-form-urlencoded',
+                    'Authorization':`Bearer ${sessionStorage.getItem("jwt")}`
+                }
+            });
+            alert("Downvoted the review!");
+            await submitSearch();
+        }
+        catch(e){
+            alert("already downvoted");
+        }
+    }
     return(
         <Container fluid>
             <Row>
@@ -254,16 +300,16 @@ const Search = ()=>{
                                                                 <Col lg={1}>
                                                                     <Row>
                                                                         <Col lg={6}>
-                                                                            <Button variant="link"><CaretUp/></Button>
+                                                                            <Button variant="link" onClick={()=>upvote(rev.ID)}><CaretUp/><br/>{rev.UPS}</Button>
                                                                         </Col>
                                                                     </Row>
                                                                     <Row>
                                                                     <Col lg={6}>
-                                                                            <Button variant="link"><CaretDown/></Button>
+                                                                            <Button variant="link"  onClick={()=>downvote(rev.ID)}><CaretDown/><br/>-{rev.DOWNS}</Button>
                                                                         </Col>
                                                                     </Row>
                                                                 </Col>
-                                                                <Col lg={11}>
+                                                                <Col lg={11} style={{paddingTop:"2rem"}}>
                                                                     <Row>
                                                                         <Col className="profileName">
                                                                             {rev.FNAME+" "+rev.LNAME}

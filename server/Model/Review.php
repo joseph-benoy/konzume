@@ -25,7 +25,7 @@ class Review extends Database{
         $tokenData = $this->validateUserToken();
         if($tokenData){
             $email = $tokenData->data[3];
-            $reviewData = $this->select("SELECT REVIEWS.UID,REVIEWS.PID,REVIEWS.COMMENT,USER.FNAME,USER.LNAME FROM REVIEWS INNER JOIN USER ON REVIEWS.UID=USER.ID AND REVIEWS.PID=?",array(intval($data['pid'])),"i");
+            $reviewData = $this->select("SELECT REVIEWS.ID,REVIEWS.UID,REVIEWS.PID,REVIEWS.COMMENT,REVIEWS.UPS,REVIEWS.DOWNS,USER.FNAME,USER.LNAME FROM REVIEWS INNER JOIN USER ON REVIEWS.UID=USER.ID AND REVIEWS.PID=?",array(intval($data['pid'])),"i");
             if($reviewData!=false){
                 return array("success"=>$reviewData);
             }
@@ -43,11 +43,18 @@ class Review extends Database{
         $tokenData = $this->validateUserToken();
         if($tokenData){
             $email = $tokenData->data[3];
-            if($this->update("UPDATE REVIEWS SET UPS = UPS+1 WHERE ID=?",array(intval($data['id'])),"i")){
-                return array("success"=>"upvoted");
-            }
+            $id = intval($data['uid'])+intval($data['id']);
+            $bo = $this->insert("INSERT INTO REACTIONS VALUES(?,?,?,?)",array($id,intval($data['id']),intval($data['uid']),intval($data['type'])),"iiii");
+            if($bo){
+                if($this->update("UPDATE REVIEWS SET UPS = UPS+1 WHERE ID=?",array(intval($data['id'])),"i")){
+                    return array("success"=>"upvoted");
+                }
+                else{
+                    return array("error"=>"cant upvote");
+                }            }
             else{
-                return array("error"=>"cant upvote");
+                http_response_code(403);
+                return array("error"=>"failed to insert");
             }
         }
         else{
@@ -58,11 +65,18 @@ class Review extends Database{
         $tokenData = $this->validateUserToken();
         if($tokenData){
             $email = $tokenData->data[3];
-            if($this->update("UPDATE REVIEWS SET DOWNS = DOWNS+1 WHERE ID=?",array(intval($data['id'])),"i")){
-                return array("success"=>"downvoted");
-            }
+            $id = intval($data['uid'])+intval($data['id']);
+            $bo = $this->insert("INSERT INTO REACTIONS VALUES(?,?,?,?)",array($id,intval($data['id']),intval($data['uid']),intval($data['type'])),"iiii");
+            if($bo){
+                if($this->update("UPDATE REVIEWS SET DOWNS = DOWNS+1 WHERE ID=?",array(intval($data['id'])),"i")){
+                    return array("success"=>"downvoted");
+                }
+                else{
+                    return array("error"=>"cant downvote");
+                }            }
             else{
-                return array("error"=>"cant downvote");
+                http_response_code(403);
+                return array("error"=>"failed to insert");
             }
         }
         else{
